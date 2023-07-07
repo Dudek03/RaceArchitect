@@ -13,6 +13,10 @@ public class BlockPlacer : MonoBehaviour
     float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
+    public Transform maxBottom;
+    public Transform maxLeft;
+    public Transform maxTop;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +47,9 @@ public class BlockPlacer : MonoBehaviour
         {
             currentBlock.Unselect();
         }
-        GameObject obj = Instantiate(block, new Vector3(-1, 0, 0), Quaternion.identity, transform);
+
+        Vector3 startPos = currentBlock == null ? new Vector3(-1, 0, 0) : currentBlock.getPos();
+        GameObject obj = Instantiate(block, startPos, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.Select();
@@ -52,7 +58,7 @@ public class BlockPlacer : MonoBehaviour
 
     public void SelectBlock(PlaceableBlock block)
     {
-        if(!block.selectable) return;
+        if (!block.selectable) return;
         if (currentBlock != null)
         {
             currentBlock.Unselect();
@@ -142,6 +148,11 @@ public class BlockPlacer : MonoBehaviour
         do
         {
             currentBlock.Move(move);
+            if (isOutOfBound(currentBlock.getPos()))
+            {
+                currentBlock.Move(-move);
+                break;
+            }
         }
         while (!isOneOnSpot(currentBlock));
     }
@@ -157,6 +168,11 @@ public class BlockPlacer : MonoBehaviour
             }
         }
         return true;
+    }
+
+    bool isOutOfBound(Vector3 pos)
+    {
+        return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
     }
 
 }
