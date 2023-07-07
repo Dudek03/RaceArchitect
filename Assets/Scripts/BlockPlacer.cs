@@ -44,7 +44,7 @@ public class BlockPlacer : MonoBehaviour
             currentBlock.Unselect();
         }
         GameObject obj = Instantiate(block, new Vector3(-1, 0, 0), Quaternion.identity, transform);
-        currentBlock = obj.AddComponent<PlaceableBlock>();
+        currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.Select();
         Move(Vector3.right);
@@ -52,7 +52,7 @@ public class BlockPlacer : MonoBehaviour
 
     public void SelectBlock(PlaceableBlock block)
     {
-
+        if(!block.selectable) return;
         if (currentBlock != null)
         {
             currentBlock.Unselect();

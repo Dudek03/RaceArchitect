@@ -7,20 +7,15 @@ public class PlaceableBlock : MonoBehaviour
 {
 
     public bool isSelected = false;
+    public bool selectable = true;
     private BlockPlacer placer;
     private MeshRenderer meshRenderer;
-
+    
 
     void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
         meshRenderer = GetComponent<MeshRenderer>();
-    }
-
-
-    void Update()
-    {
-
     }
 
     void OnMouseDown()
