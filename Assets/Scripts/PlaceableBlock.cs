@@ -7,7 +7,7 @@ public class PlaceableBlock : MonoBehaviour
 {
 
     public bool isSelected = false;
-    public bool Selectable = true;
+    public bool selectable = true;
     private BlockPlacer placer;
     private MeshRenderer meshRenderer;
     

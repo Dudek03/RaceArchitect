@@ -52,7 +52,7 @@ public class BlockPlacer : MonoBehaviour
 
     public void SelectBlock(PlaceableBlock block)
     {
-        if(!block.Selectable) return;
+        if(!block.selectable) return;
         if (currentBlock != null)
         {
             currentBlock.Unselect();
