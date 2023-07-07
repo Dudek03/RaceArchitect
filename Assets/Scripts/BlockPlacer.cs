@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
 {
+    public GameObject placeholder; //TODO: Remove
     public PlaceableBlock currentBlock;
-    public Vector3 currentPos;
-    public GameObject[] allBlocks;
+    public List<PlaceableBlock> allBlocks;
 
 
-    public float timerH = 0;
-    public float timerV = 0;
+    float timerH = 0;
+    float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
 
@@ -25,32 +25,80 @@ public class BlockPlacer : MonoBehaviour
     {
         if (currentBlock != null)
         {
-            if (Input.GetAxis("Horizontal") > axisesThreshold)
+            MoveBlock();
+            if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
             {
-                CheckMoveH(Vector3.right);
-            }
-            else if (Input.GetAxis("Horizontal") < -axisesThreshold)
-            {
-                CheckMoveH(Vector3.left);
-            }
-            else
-            {
-                timerH = 0;
-            }
-
-            if (Input.GetAxis("Vertical") > axisesThreshold)
-            {
-                CheckMoveV(Vector3.up);
-            }
-            else if (Input.GetAxis("Vertical") < -axisesThreshold)
-            {
-                CheckMoveV(Vector3.down);
-            }
-            else
-            {
-                timerV = 0;
+                DestroyBlock();
             }
         }
+        if (Input.GetKeyDown("1"))
+        {
+            CreateBlock(placeholder);
+        }
+    }
+
+    public void CreateBlock(GameObject block)
+    {
+        if (currentBlock != null)
+        {
+            currentBlock.Unselect();
+        }
+        GameObject obj = Instantiate(block, new Vector3(-1, 0, 0), Quaternion.identity, transform);
+        currentBlock = obj.AddComponent<PlaceableBlock>();
+        allBlocks.Add(currentBlock);
+        currentBlock.Select();
+        Move(Vector3.right);
+    }
+
+    public void SelectBlock(PlaceableBlock block)
+    {
+
+        if (currentBlock != null)
+        {
+            currentBlock.Unselect();
+        }
+        currentBlock = block;
+        if (currentBlock != null)
+        {
+            currentBlock.Select();
+        }
+    }
+
+    public void DestroyBlock()
+    {
+        allBlocks.Remove(currentBlock);
+        currentBlock.SelfDestroy();
+        currentBlock = null;
+    }
+
+    void MoveBlock()
+    {
+        if (Input.GetAxis("Horizontal") > axisesThreshold)
+        {
+            CheckMoveH(Vector3.right);
+        }
+        else if (Input.GetAxis("Horizontal") < -axisesThreshold)
+        {
+            CheckMoveH(Vector3.left);
+        }
+        else
+        {
+            timerH = 0;
+        }
+
+        if (Input.GetAxis("Vertical") > axisesThreshold)
+        {
+            CheckMoveV(Vector3.up);
+        }
+        else if (Input.GetAxis("Vertical") < -axisesThreshold)
+        {
+            CheckMoveV(Vector3.down);
+        }
+        else
+        {
+            timerV = 0;
+        }
+
     }
 
 
@@ -91,6 +139,24 @@ public class BlockPlacer : MonoBehaviour
 
     void Move(Vector3 move)
     {
-        currentBlock.Move(move);
+        do
+        {
+            currentBlock.Move(move);
+        }
+        while (!isOneOnSpot(currentBlock));
     }
+
+
+    bool isOneOnSpot(PlaceableBlock block)
+    {
+        foreach (PlaceableBlock b in allBlocks)
+        {
+            if (b != block && b.getPos() == block.getPos())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
