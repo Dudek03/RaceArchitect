@@ -216,4 +216,28 @@ public class BlockPlacer : MonoBehaviour
     {
         return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
     }
+
+
+    public void Clear()
+    {
+        if (currentBlock != null)
+        {
+            currentBlock.Unselect();
+        }
+        currentBlock = null;
+
+        List<PlaceableBlock> toDestroy = new List<PlaceableBlock>();
+        foreach (PlaceableBlock block in allBlocks)
+        {
+            if (block.selectable)
+            {
+                toDestroy.Add(block);
+            }
+        }
+        foreach (PlaceableBlock block in toDestroy)
+        {
+            currentBlock = block;
+            DestroyBlock();
+        }
+    }
 }
