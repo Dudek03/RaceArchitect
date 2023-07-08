@@ -57,12 +57,22 @@ public class BlockPlacer : MonoBehaviour
 
     public void CreateBlock(BlockData blockData)
     {
-        if (currentBlock != null)
+        Vector3 startPos;
+        if (currentBlock == null)
         {
+            startPos = new Vector3(-1, 0, 0);
+        }
+        else if (currentBlock.isGhost)
+        {
+            startPos = currentBlock.getPos() - Vector3.right - currentBlock.blockData.offset;
+            currentBlock.Unselect();
+        }
+        else
+        {
+            startPos = currentBlock.getPos();
             currentBlock.Unselect();
         }
 
-        Vector3 startPos = currentBlock == null ? new Vector3(-1, 0, 0) : currentBlock.getPos();
         GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
