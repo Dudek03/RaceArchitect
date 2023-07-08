@@ -9920,7 +9920,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_WhatIsCeil:
     serializedVersion: 2
     m_Bits: 55
@@ -9930,6 +9930,7 @@ MonoBehaviour:
   upArrowActivate: 0
   maxTimeUpActivation: 1
   ps: {fileID: 7650387007060723469}
+  flipAnimation: 0.3
 --- !u!136 &2215752919088825241
 CapsuleCollider:
   m_ObjectHideFlags: 0

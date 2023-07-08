@@ -139,7 +139,16 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        this.points += points * pointsMultiply;
+        float mul = 0;
+        foreach (var zone in FindObjectsOfType<BonusZone>())
+        {
+            if (zone.hasBonus)
+            {
+                mul += zone.bonus;
+            }
+        }
+
+        this.points += (int)(points * (pointsMultiply + mul));
         progressCounter.UpdatePoints(this.points);
     }
 
