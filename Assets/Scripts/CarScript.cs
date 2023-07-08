@@ -20,7 +20,11 @@ public class CarScript : MonoBehaviour
     Rigidbody rb;
     public Animator animator;
 
-
+    public bool upArrowActivate = false;
+    public int maxTimeUpActivation = 1;
+    private float timeUpActivation = 0;
+    
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,6 +34,15 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (upArrowActivate)
+        {
+            timeUpActivation -= Time.deltaTime;
+            if (timeUpActivation <= 0)
+            {
+                upArrowActivate = false;
+            }
+        }
+        
         m_Grounded = false;
 
         Collider[] colliders = Physics.OverlapSphere(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -40,6 +53,7 @@ public class CarScript : MonoBehaviour
                 m_Grounded = true;
             }
         }
+
         Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
         for (int i = 0; i < colliders2.Length; i++)
         {
@@ -48,6 +62,7 @@ public class CarScript : MonoBehaviour
                 GameManager.Instance.GameOver();
             }
         }
+
         if (GameManager.Instance.gameState != GameState.RUN) return;
 
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
@@ -57,6 +72,7 @@ public class CarScript : MonoBehaviour
 
     public void ActionRight()
     {
+        upArrowActivate = false;
         if (!m_Grounded)
         {
             animator.SetTrigger("frontflip");
@@ -72,6 +88,7 @@ public class CarScript : MonoBehaviour
 
     public void ActionLeft()
     {
+        upArrowActivate = false;
         if (!m_Grounded)
         {
             animator.SetTrigger("backflip");
@@ -89,12 +106,13 @@ public class CarScript : MonoBehaviour
 
     public void ActionUp()
     {
-        Debug.Log("NOW I DO NOTHING, but I am Up");
+        upArrowActivate = true;
+        timeUpActivation = maxTimeUpActivation;
     }
 
     public void ActionDown()
     {
-        Debug.Log("NOW I DO NOTHING, but I am Down");
+        upArrowActivate = false;
     }
 
     public Vector3 GetPos()
@@ -109,5 +127,10 @@ public class CarScript : MonoBehaviour
         {
             currentSpeed = maxSpeed;
         }
+    }
+
+    public void ApplyForce(Vector3 force)
+    {
+        rb.AddForce(force);
     }
 }
