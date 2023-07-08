@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -138,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        this.points += points*pointsMultiply;
+        this.points += points * pointsMultiply;
         progressCounter.UpdatePoints(this.points);
     }
 
@@ -160,10 +161,12 @@ public class GameManager : MonoBehaviour
     {
         pointsMultiply = 1;
     }
+
     public void GameOver()
     {
         gameState = GameState.BUILDING;
-        GameManager.Instance.actionList = new List<ActionsTypes>(GameManager.Instance.actionListSaved);
+        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
     }
 }
