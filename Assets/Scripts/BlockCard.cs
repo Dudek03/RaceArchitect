@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockCard : MonoBehaviour
 {
-    public GameObject prefab;
+    public BlockData data;
     BlockPlacer placer;
 
     private void Start()
@@ -15,6 +15,6 @@ public class BlockCard : MonoBehaviour
 
     public void OnClick()
     {
-        placer.CreateBlock(prefab);
+        placer.CreateBlock(data);
     }
 }
