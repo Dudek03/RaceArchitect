@@ -40,6 +40,11 @@ public class UiManager : MonoBehaviour
             runUI.SetActive(false);
             buildUI.SetActive(true);
         }
+        else
+        {
+            runUI.SetActive(true);
+            buildUI.SetActive(false);
+        }
     }
 
     public void ShowWin()
