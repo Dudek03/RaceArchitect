@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,18 +176,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3750832093767704204}
     m_Modifications:
-    - target: {fileID: 651356561552914649, guid: 08d0d43ca3127c9478e245b41741d402,
-        type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b,
-        type: 2}
-    - target: {fileID: 651356561552914649, guid: 08d0d43ca3127c9478e245b41741d402,
-        type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 7145534873827435786, guid: 8e0542581c767654ba3d244bce228b45,
-        type: 3}
     - target: {fileID: 1849495063488646415, guid: 08d0d43ca3127c9478e245b41741d402,
         type: 3}
       propertyPath: m_Name
@@ -2613,7 +2601,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7560556065126702528}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9981114
+  m_Size: 0.9230092
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
