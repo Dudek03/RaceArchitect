@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dd064323944b8ca38da44c9d8cc646, type: 3}
   m_Name: points multiply
   m_EditorClassIdentifier: 
-  pointsInAirTime: 100
-  frontFlipIncrease: 2
-  backFlipIncrease: 2
+  pointsInAirTime: 20
+  frontFlipIncrease: 1
+  backFlipIncrease: 1
+  speedMultiply: 0.4

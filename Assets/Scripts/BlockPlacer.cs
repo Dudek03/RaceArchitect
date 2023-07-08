@@ -85,8 +85,8 @@ public class BlockPlacer : MonoBehaviour
     {
         allBlocks.Remove(currentBlock);
         currentBlock.SelfDestroy();
-        currentBlock = null;
         GameManager.Instance.DecreaseTarget(currentBlock.blockData.cost);
+        currentBlock = null;
     }
 
     void MoveBlock()

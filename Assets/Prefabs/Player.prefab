@@ -9920,7 +9920,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_WhatIsCeil:
     serializedVersion: 2
     m_Bits: 55
@@ -10006,6 +10006,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timeSlowdownDuration: 1
+  flipAnimation: 0.3
 --- !u!136 &2215752919088825241
 CapsuleCollider:
   m_ObjectHideFlags: 0

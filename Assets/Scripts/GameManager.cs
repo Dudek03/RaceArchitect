@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -67,7 +68,16 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        this.points += points * pointsMultiply;
+        float mul = 0;
+        foreach (var zone in FindObjectsOfType<BonusZone>())
+        {
+            if (zone.hasBonus)
+            {
+                mul += zone.bonus;
+            }
+        }
+
+        this.points += (int)(points * (pointsMultiply + mul));
         progressCounter.UpdatePoints(this.points);
     }
 
@@ -92,7 +102,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameState = GameState.BUILDING;
-        GameManager.Instance.actionList = new List<ActionsTypes>(GameManager.Instance.actionListSaved);
+        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        Instance.points = 0;
+        Instance.ResetMultiply();
+        Instance.progressCounter.UpdatePoints(points);
+        FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
     }
 }

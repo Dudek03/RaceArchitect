@@ -25,11 +25,27 @@ public class CarScript : MonoBehaviour
     public bool upArrowActivate = false;
     public int maxTimeUpActivation = 1;
     private float timeUpActivation = 0;
+
+    public bool downArrowActivate = false;
+    public int maxTimeDownActivation = 1;
+    private float timeDownActivation = 0;
+
+    public bool leftArrowActivate = false;
+    public int maxTimeLeftActivation = 1;
+    private float timeLeftActivation = 0;
+
+    public bool rightArrowActivate = false;
+    public int maxTimeRightActivation = 1;
+    private float timeRightActivation = 0;
+
     private Vector3 startPos;
     private Quaternion startRot;
     public ParticleSystem ps;
     public AnimationCurve winTimeSlowdown;
     public AnimationCurve dedTimeSlowdown;
+    
+    private float timeAnimation = 0;
+    public float flipAnimation = 0.3f;
     public float timeSlowdownDuration;
     void Start()
     {
@@ -51,6 +67,34 @@ public class CarScript : MonoBehaviour
             }
         }
 
+        if (downArrowActivate)
+        {
+            timeDownActivation -= Time.deltaTime;
+            if (timeDownActivation <= 0)
+            {
+                downArrowActivate = false;
+            }
+        }
+
+        if (leftArrowActivate)
+        {
+            timeLeftActivation -= Time.deltaTime;
+            if (timeLeftActivation <= 0)
+            {
+                leftArrowActivate = false;
+            }
+        }
+
+        if (rightArrowActivate)
+        {
+            timeRightActivation -= Time.deltaTime;
+            if (timeRightActivation <= 0)
+            {
+                rightArrowActivate = false;
+            }
+        }
+
+
         m_Grounded = false;
 
         Collider[] colliders = Physics.OverlapSphere(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -66,7 +110,8 @@ public class CarScript : MonoBehaviour
         if (!m_Grounded)
         {
             GameManager.Instance.AddPoints(
-                (int)Math.Ceiling(GameManager.Instance.pointsMultiplication.pointsInAirTime * Time.deltaTime));
+                (int)Math.Ceiling(GameManager.Instance.pointsMultiplication.pointsInAirTime * Time.deltaTime *
+                                  currentSpeed * GameManager.Instance.pointsMultiplication.speedMultiply));
         }
 
         Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
@@ -91,24 +136,30 @@ public class CarScript : MonoBehaviour
     public void ActionRight()
     {
         upArrowActivate = false;
-        if (!m_Grounded)
+        downArrowActivate = false;
+        leftArrowActivate = false;
+        rightArrowActivate = true;
+        timeRightActivation = maxTimeRightActivation;
+        if (!m_Grounded && timeAnimation < 0)
         {
+            timeAnimation = flipAnimation;
             animator.SetTrigger("frontflip");
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
-        }
-
-        currentSpeed += deltaSpeed;
-        if (currentSpeed > maxSpeed)
-        {
-            currentSpeed = maxSpeed;
         }
     }
 
     public void ActionLeft()
     {
         upArrowActivate = false;
-        if (!m_Grounded)
+        downArrowActivate = false;
+        leftArrowActivate = true;
+        rightArrowActivate = false;
+        timeLeftActivation = maxTimeLeftActivation;
+        if (!m_Grounded && timeAnimation < 0)
         {
+            timeAnimation = flipAnimation;
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.backFlipIncrease);
             animator.SetTrigger("backflip");
             return;
         }
@@ -144,6 +195,7 @@ public class CarScript : MonoBehaviour
         {
             dir = new Vector3(dir.x, -dir.y, dir.z);
         }
+
         rb.freezeRotation = false;
         rb.AddTorque(Random.insideUnitCircle.normalized * 200);
         rb.AddForce(dir * 10000);
@@ -161,13 +213,13 @@ public class CarScript : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        rb.freezeRotation = true;
-    }
+     }
 
     IEnumerator AfterDed()
     {
         yield return SlowDownTime(dedTimeSlowdown);
         GameManager.Instance.GameOver();
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     public void Reset()
@@ -175,18 +227,26 @@ public class CarScript : MonoBehaviour
         transform.position = startPos;
         transform.rotation = startRot;
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         Time.timeScale = 1;
     }
 
     public void ActionUp()
     {
         upArrowActivate = true;
+        downArrowActivate = false;
+        leftArrowActivate = false;
+        rightArrowActivate = false;
         timeUpActivation = maxTimeUpActivation;
     }
 
     public void ActionDown()
     {
         upArrowActivate = false;
+        downArrowActivate = true;
+        leftArrowActivate = false;
+        rightArrowActivate = false;
+        timeDownActivation = maxTimeDownActivation;
     }
 
     public Vector3 GetPos()

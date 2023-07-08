@@ -21,7 +21,14 @@ public class booster : MonoBehaviour
     {
         if (other.gameObject == GameManager.Instance.car.gameObject)
         {
-            GameManager.Instance.car.IncreaseSpeed(acceleration * Time.deltaTime);
+            if (GameManager.Instance.car.rightArrowActivate)
+            {
+                GameManager.Instance.car.IncreaseSpeed(acceleration * Time.deltaTime * 2);
+            }
+            else
+            {
+                GameManager.Instance.car.IncreaseSpeed(acceleration * Time.deltaTime);
+            }
         }
     }
 }
