@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
             gameState = GameState.RUN;
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && gameState == GameState.RUN)
+        {
+            car.Die();
+        }
+
         if (gameState != GameState.RUN) return;
 
         if (Input.GetAxis("Horizontal") > axisesThreshold)
@@ -138,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        this.points += points*pointsMultiply;
+        this.points += points * pointsMultiply;
         progressCounter.UpdatePoints(this.points);
     }
 

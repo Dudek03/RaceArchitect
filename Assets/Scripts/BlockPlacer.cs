@@ -6,7 +6,7 @@ public class BlockPlacer : MonoBehaviour
 {
     public PlaceableBlock currentBlock;
     public List<PlaceableBlock> allBlocks;
-    
+
     float timerH = 0;
     float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
@@ -41,6 +41,10 @@ public class BlockPlacer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
             {
                 DestroyBlock();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                CreateBlock(currentBlock.blockData);
             }
         }
     }

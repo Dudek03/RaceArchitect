@@ -10,6 +10,7 @@ public class PlaceableBlock : MonoBehaviour
     public bool selectable = true;
     private BlockPlacer placer;
     public BlockData blockData;
+    public GameObject selected;
 
     void Start()
     {
@@ -32,10 +33,12 @@ public class PlaceableBlock : MonoBehaviour
 
     public void Select()
     {
+        selected.SetActive(true);
         isSelected = true;
     }
     public void Unselect()
     {
+        selected.SetActive(false);
         isSelected = false;
     }
 
