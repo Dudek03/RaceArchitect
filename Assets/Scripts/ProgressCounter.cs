@@ -7,7 +7,8 @@ using TMPro;
 public class ProgressCounter : MonoBehaviour
 {
     [SerializeField] private Image fill;
-    [SerializeField] private TextMeshProUGUI counter;
+    [SerializeField] private TextMeshProUGUI CurrentCounter;
+    [SerializeField] private TextMeshProUGUI MaxCounter;
     [SerializeField] private int maxValue;
     private int currentValue = 0;
 
@@ -47,7 +48,8 @@ public class ProgressCounter : MonoBehaviour
     private void UpdateVisual()
     {
         fill.fillAmount = Normalise();
-        counter.text = $"{currentValue} / {maxValue}";
+        CurrentCounter.text = $"{currentValue}";
+        MaxCounter.text = $"{maxValue}";
     }
 
     private float Normalise()

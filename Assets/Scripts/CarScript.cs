@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Random = UnityEngine.Random;
+
 [RequireComponent(typeof(Rigidbody))]
 public class CarScript : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class CarScript : MonoBehaviour
     private float timeAnimation = 0;
     public float flipAnimation = 0.3f;
     public float timeSlowdownDuration;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -122,7 +124,7 @@ public class CarScript : MonoBehaviour
         {
             if (!colliders2[i].isTrigger && colliders2[i].gameObject != gameObject)
             {
-                GameManager.Instance.GameOver();
+                Die();
             }
         }
 
@@ -132,10 +134,10 @@ public class CarScript : MonoBehaviour
         }
 
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
-        Vector3.right);
+                    Vector3.right);
 
         fill.fillAmount = ((float)currentSpeed / maxSpeed) / 2;
-        speedometerNumber.text = $"{(int)currentSpeed} km/h";
+        speedometerNumber.text = $"{(int)currentSpeed}";
     }
 
 
@@ -180,8 +182,10 @@ public class CarScript : MonoBehaviour
 
     public void Win()
     {
+        if(GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
+        GameManager.Instance.gameState = GameState.WINLOSE;
         StartCoroutine(AfterWin());
     }
 
@@ -194,6 +198,8 @@ public class CarScript : MonoBehaviour
 
     public void Die()
     {
+        if(GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
+        GameManager.Instance.gameState = GameState.DEATH;
         ps.Play();
 
         Vector3 dir = Random.insideUnitCircle.normalized;
@@ -211,7 +217,6 @@ public class CarScript : MonoBehaviour
 
     IEnumerator SlowDownTime(AnimationCurve timeSlowdown)
     {
-
         float time = 0;
         while (time < timeSlowdownDuration)
         {
@@ -223,6 +228,7 @@ public class CarScript : MonoBehaviour
 
     IEnumerator AfterDed()
     {
+        yield return new WaitForSeconds(2);
         yield return SlowDownTime(dedTimeSlowdown);
         GameManager.Instance.GameOver();
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
@@ -235,6 +241,7 @@ public class CarScript : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         Time.timeScale = 1;
+        currentSpeed = 10f;
     }
 
     public void ActionUp()

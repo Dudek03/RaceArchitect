@@ -1,5 +1,7 @@
 ﻿public enum GameState
 {
     BUILDING,
-    RUN
+    RUN,
+    WINLOSE,
+    DEATH
 }

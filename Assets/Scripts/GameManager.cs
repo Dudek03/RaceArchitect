@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
+        if (Instance.gameState != GameState.RUN) return;
         float mul = 0;
         foreach (var zone in FindObjectsOfType<BonusZone>())
         {
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
     {
         pointsMultiply = 1;
     }
+
     public void GameOver()
     {
         gameState = GameState.BUILDING;
