@@ -8,5 +8,5 @@ public class BlockData : ScriptableObject
     public GameObject prefab;
     public Sprite img;
     public Vector3 offset;
-    public float cost=300;
+    public int cost=300;
 }

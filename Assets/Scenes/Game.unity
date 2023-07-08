@@ -405,7 +405,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3009424343903981573}
-  - {fileID: 9087760084283382631}
   m_Father: {fileID: 761105695}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -679,11 +678,11 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -749,10 +748,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ac150a66473547ad4cca9a08e6107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsMultiplication: {fileID: 11400000, guid: ac38a0afef2623244b4ee58d2a968d69,
+    type: 2}
   car: {fileID: 837511554}
   gameState: 0
   actionListSaved: 
   actionList: 
+  targetGame: 500
+  points: 0
+  pointsMultiply: 1
+  progressCounter: {fileID: 4141511018999123616}
   releaseTime: 1
   axisesThreshold: 0.1
 --- !u!1 &715150792
@@ -919,6 +924,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8618645131752227962}
+  - {fileID: 9087760084283382631}
   - {fileID: 1301713890}
   - {fileID: 422890563}
   m_Father: {fileID: 0}
@@ -989,6 +995,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   selectable: 0
+  blockData: {fileID: 0}
+  selected: {fileID: 0}
 --- !u!114 &837511554 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
@@ -1395,6 +1403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   selectable: 0
+  blockData: {fileID: 0}
+  selected: {fileID: 0}
 --- !u!1001 &1594263604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2109,7 +2119,7 @@ MonoBehaviour:
   - {fileID: 1074761457}
   - {fileID: 1497055237}
   - {fileID: 809070731}
-  releaseTime: 0.2
+  releaseTime: 1
   axisesThreshold: 0.1
   maxBottom: {fileID: 581690401}
   maxLeft: {fileID: 465678014}
@@ -2740,6 +2750,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &790770488475237148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800193920653867097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930700610243836600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3455,7 +3480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3592,6 +3617,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5097786697343763840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800193920653867097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: c923c724fab2d59b885cdce02d40c555, type: 2}
 --- !u!222 &5117002697050892006
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3899,6 +3941,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7359138099067771518}
   m_CullTransparentMesh: 1
+--- !u!1 &7800193920653867097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 790770488475237148}
+  - component: {fileID: 5097786697343763840}
+  m_Layer: 8
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &8027269447784610624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4101,7 +4160,7 @@ RectTransform:
   - {fileID: 1799149741485761330}
   - {fileID: 5935325632461333920}
   - {fileID: 6417977257822400267}
-  m_Father: {fileID: 422890563}
+  m_Father: {fileID: 761105695}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}

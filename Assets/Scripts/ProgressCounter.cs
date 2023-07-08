@@ -10,27 +10,37 @@ public class ProgressCounter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI counter;
     [SerializeField] private int maxValue;
     private int currentValue = 0;
+
     void Start()
     {
+        UpdateVisual();
+    }
+
+    public void UpdateMaxValue(int value)
+    {
+        this.maxValue = value;
         UpdateVisual();
     }
 
     public void Add(int val)
     {
         currentValue += val;
-        if(currentValue > maxValue)
+        if (currentValue > maxValue)
         {
             currentValue = maxValue;
         }
+
         UpdateVisual();
     }
 
     public void Subtract(int val)
     {
         currentValue -= val;
-        if(currentValue < 0) { 
+        if (currentValue < 0)
+        {
             currentValue = 0;
         }
+
         UpdateVisual();
     }
 
@@ -45,4 +55,14 @@ public class ProgressCounter : MonoBehaviour
         return (float)currentValue / maxValue;
     }
 
+    public void UpdatePoints(int points)
+    {
+        currentValue = points;
+        if (currentValue < 0)
+        {
+            currentValue = 0;
+        }
+
+        UpdateVisual();
+    }
 }
