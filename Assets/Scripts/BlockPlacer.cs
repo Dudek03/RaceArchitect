@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
 {
-    public GameObject placeholder; //TODO: Remove
     public PlaceableBlock currentBlock;
     public List<PlaceableBlock> allBlocks;
-
 
     float timerH = 0;
     float timerV = 0;
@@ -21,7 +19,6 @@ public class BlockPlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -34,6 +31,7 @@ public class BlockPlacer : MonoBehaviour
                 currentBlock.Unselect();
                 currentBlock = null;
             }
+
             return;
         }
 
@@ -44,14 +42,14 @@ public class BlockPlacer : MonoBehaviour
             {
                 DestroyBlock();
             }
-        }
-        if (Input.GetKeyDown("1"))
-        {
-            CreateBlock(placeholder);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                CreateBlock(currentBlock.blockData);
+            }
         }
     }
 
-    public void CreateBlock(GameObject block)
+    public void CreateBlock(BlockData blockData)
     {
         if (currentBlock != null)
         {
@@ -59,11 +57,13 @@ public class BlockPlacer : MonoBehaviour
         }
 
         Vector3 startPos = currentBlock == null ? new Vector3(-1, 0, 0) : currentBlock.getPos();
-        GameObject obj = Instantiate(block, startPos, Quaternion.identity, transform);
+        GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.Select();
+        currentBlock.blockData = blockData;
         Move(Vector3.right);
+        GameManager.Instance.IncreaseTarget(blockData.cost);
     }
 
     public void SelectBlock(PlaceableBlock block)
@@ -73,6 +73,7 @@ public class BlockPlacer : MonoBehaviour
         {
             currentBlock.Unselect();
         }
+
         currentBlock = block;
         if (currentBlock != null)
         {
@@ -84,6 +85,7 @@ public class BlockPlacer : MonoBehaviour
     {
         allBlocks.Remove(currentBlock);
         currentBlock.SelfDestroy();
+        GameManager.Instance.DecreaseTarget(currentBlock.blockData.cost);
         currentBlock = null;
     }
 
@@ -104,17 +106,16 @@ public class BlockPlacer : MonoBehaviour
 
         if (Input.GetAxis("Vertical") > axisesThreshold)
         {
-            CheckMoveV(Vector3.up);
+            CheckMoveV(Vector3.up / 2);
         }
         else if (Input.GetAxis("Vertical") < -axisesThreshold)
         {
-            CheckMoveV(Vector3.down);
+            CheckMoveV(Vector3.down / 2);
         }
         else
         {
             timerV = 0;
         }
-
     }
 
 
@@ -150,7 +151,6 @@ public class BlockPlacer : MonoBehaviour
         {
             timerV += Time.deltaTime;
         }
-
     }
 
     void Move(Vector3 move)
@@ -163,8 +163,7 @@ public class BlockPlacer : MonoBehaviour
                 currentBlock.Move(-move);
                 break;
             }
-        }
-        while (!isOneOnSpot(currentBlock));
+        } while (!isOneOnSpot(currentBlock));
     }
 
 
@@ -177,6 +176,7 @@ public class BlockPlacer : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 
@@ -184,5 +184,4 @@ public class BlockPlacer : MonoBehaviour
     {
         return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
     }
-
 }

@@ -7,37 +7,49 @@ using TMPro;
 public class ProgressCounter : MonoBehaviour
 {
     [SerializeField] private Image fill;
-    [SerializeField] private TextMeshProUGUI counter;
+    [SerializeField] private TextMeshProUGUI CurrentCounter;
+    [SerializeField] private TextMeshProUGUI MaxCounter;
     [SerializeField] private int maxValue;
     private int currentValue = 0;
+
     void Start()
     {
+        UpdateVisual();
+    }
+
+    public void UpdateMaxValue(int value)
+    {
+        this.maxValue = value;
         UpdateVisual();
     }
 
     public void Add(int val)
     {
         currentValue += val;
-        if(currentValue > maxValue)
+        if (currentValue > maxValue)
         {
             currentValue = maxValue;
         }
+
         UpdateVisual();
     }
 
     public void Subtract(int val)
     {
         currentValue -= val;
-        if(currentValue < 0) { 
+        if (currentValue < 0)
+        {
             currentValue = 0;
         }
+
         UpdateVisual();
     }
 
     private void UpdateVisual()
     {
         fill.fillAmount = Normalise();
-        counter.text = $"{currentValue} / {maxValue}";
+        CurrentCounter.text = $"{currentValue}";
+        MaxCounter.text = $"{maxValue}";
     }
 
     private float Normalise()
@@ -45,4 +57,14 @@ public class ProgressCounter : MonoBehaviour
         return (float)currentValue / maxValue;
     }
 
+    public void UpdatePoints(int points)
+    {
+        currentValue = points;
+        if (currentValue < 0)
+        {
+            currentValue = 0;
+        }
+
+        UpdateVisual();
+    }
 }
