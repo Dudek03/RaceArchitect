@@ -25,7 +25,7 @@ public class CarScript : MonoBehaviour
     private float timeUpActivation = 0;
     private Vector3 startPos;
     private Quaternion startRot;
-
+    public ParticleSystem ps;
 
     void Start()
     {
@@ -112,8 +112,29 @@ public class CarScript : MonoBehaviour
 
     public void Die()
     {
-        GameManager.Instance.GameOver();
+        ps.Play();
+
+        Vector3 dir = Random.insideUnitCircle.normalized;
+        if (dir.y < 0)
+        {
+            dir = new Vector3(dir.x, -dir.y, dir.z);
+        }
+        rb.freezeRotation = false;
+        rb.AddTorque(Random.insideUnitCircle.normalized * 200);
+        rb.AddForce(dir * 10000);
         currentSpeed = 10;
+        StartCoroutine(AfterDed());
+    }
+
+    IEnumerator AfterDed()
+    {
+        Time.timeScale = 0.5f;
+        yield return new WaitForSecondsRealtime(0.7f);
+        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(0.3f);
+        rb.freezeRotation = true;
+
+        GameManager.Instance.GameOver();
     }
 
     public void Reset()
