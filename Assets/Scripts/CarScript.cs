@@ -135,7 +135,7 @@ public class CarScript : MonoBehaviour
         Vector3.right);
 
         fill.fillAmount = ((float)currentSpeed / maxSpeed) / 2;
-        speedometerNumber.text = $"{(int)currentSpeed} km/h";
+        speedometerNumber.text = $"{(int)currentSpeed}";
     }
 
 
