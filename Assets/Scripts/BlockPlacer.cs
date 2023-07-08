@@ -27,6 +27,16 @@ public class BlockPlacer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.gameState != GameState.BUILDING)
+        {
+            if (currentBlock != null)
+            {
+                currentBlock.Unselect();
+                currentBlock = null;
+            }
+            return;
+        }
+
         if (currentBlock != null)
         {
             MoveBlock();

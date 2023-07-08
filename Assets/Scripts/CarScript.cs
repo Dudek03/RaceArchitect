@@ -26,6 +26,7 @@ public class CarScript : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.gameState != GameState.RUN) return;
+
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
                     Vector3.right);
     }
@@ -59,5 +60,10 @@ public class CarScript : MonoBehaviour
     public void ActionDown()
     {
         Debug.Log("NOW I DO NOTHING, but I am Down");
+    }
+
+    public Vector3 GetPos()
+    {
+        return transform.position;
     }
 }
