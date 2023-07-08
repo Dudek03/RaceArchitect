@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public CarScript car;
     public GameState gameState = GameState.BUILDING;
 
+    public List<ActionsTypes> actionListSaved;
     public List<ActionsTypes> actionList;
 
     float timerH = 0;
@@ -122,6 +123,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        print("GAME OVER");
+        gameState = GameState.BUILDING;
+        GameManager.Instance.actionList = new List<ActionsTypes>(GameManager.Instance.actionListSaved);
+        car.Reset();
     }
 }

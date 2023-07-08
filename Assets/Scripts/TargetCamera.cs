@@ -22,6 +22,10 @@ public class TargetCamera : MonoBehaviour
             {
                 transform.position = startPos + new Vector3(placer.currentBlock.getPos().x, 0, 0);
             }
+            else
+            {
+                transform.position = startPos + new Vector3(GameManager.Instance.car.GetPos().x, 0, 0);
+            }
         }
         else if (GameManager.Instance.gameState == GameState.RUN)
         {

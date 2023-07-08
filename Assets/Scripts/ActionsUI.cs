@@ -27,7 +27,11 @@ public class ActionsUI : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameState != GameState.RUN) return;
+        if (GameManager.Instance.gameState != GameState.RUN)
+        {
+            progressAction = 0;
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             MakeAction();

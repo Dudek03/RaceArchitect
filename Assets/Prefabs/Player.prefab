@@ -208,10 +208,12 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_WhatIsCeil:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_GroundCheck: {fileID: 6394696314120680216}
   m_CeilCheck: {fileID: 4947068040251886149}
   animator: {fileID: 448672842728762238}
+  upArrowActivate: 0
+  maxTimeUpActivation: 1
 --- !u!136 &2215752919088825241
 CapsuleCollider:
   m_ObjectHideFlags: 0

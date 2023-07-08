@@ -23,11 +23,15 @@ public class CarScript : MonoBehaviour
     public bool upArrowActivate = false;
     public int maxTimeUpActivation = 1;
     private float timeUpActivation = 0;
-    
-    
+    private Vector3 startPos;
+    private Quaternion startRot;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
 
@@ -42,7 +46,7 @@ public class CarScript : MonoBehaviour
                 upArrowActivate = false;
             }
         }
-        
+
         m_Grounded = false;
 
         Collider[] colliders = Physics.OverlapSphere(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -57,13 +61,16 @@ public class CarScript : MonoBehaviour
         Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
         for (int i = 0; i < colliders2.Length; i++)
         {
-            if (colliders2[i].gameObject != gameObject)
+            if (!colliders2[i].isTrigger && colliders2[i].gameObject != gameObject)
             {
                 GameManager.Instance.GameOver();
             }
         }
 
-        if (GameManager.Instance.gameState != GameState.RUN) return;
+        if (GameManager.Instance.gameState != GameState.RUN)
+        {
+            return;
+        }
 
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
                     Vector3.right);
@@ -99,9 +106,21 @@ public class CarScript : MonoBehaviour
         if (currentSpeed <= 0)
         {
             //TODO: LATER 
-            GameManager.Instance.GameOver();
-            currentSpeed = 0;
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        GameManager.Instance.GameOver();
+        currentSpeed = 10;
+    }
+
+    public void Reset()
+    {
+        transform.position = startPos;
+        transform.rotation = startRot;
+        rb.velocity = Vector3.zero;
     }
 
     public void ActionUp()

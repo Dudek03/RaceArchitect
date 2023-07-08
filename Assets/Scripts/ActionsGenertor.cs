@@ -11,17 +11,18 @@ public class ActionsGenertor : MonoBehaviour
     void Start()
     {
         generate();
+        GameManager.Instance.actionList = new List<ActionsTypes>(GameManager.Instance.actionListSaved);
         actionsUI.PopulateList();
     }
 
     void generate()
     {
-        GameManager.Instance.actionList.Clear();
+        GameManager.Instance.actionListSaved.Clear();
         int length = UnityEngine.Random.Range(minNumberOfAction, maxNumberOfAction);
         Array values = Enum.GetValues(typeof(ActionsTypes));
         for (int i = 0; i < length; i++)
         {
-            GameManager.Instance.actionList.Add((ActionsTypes)values.GetValue(UnityEngine.Random.Range(0, values.Length)));
+            GameManager.Instance.actionListSaved.Add((ActionsTypes)values.GetValue(UnityEngine.Random.Range(0, values.Length)));
         }
     }
 
