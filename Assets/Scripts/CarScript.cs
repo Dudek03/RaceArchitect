@@ -182,6 +182,7 @@ public class CarScript : MonoBehaviour
 
     public void Win()
     {
+        if(GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
         GameManager.Instance.gameState = GameState.WINLOSE;
@@ -197,6 +198,7 @@ public class CarScript : MonoBehaviour
 
     public void Die()
     {
+        if(GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
         GameManager.Instance.gameState = GameState.DEATH;
         ps.Play();
 
