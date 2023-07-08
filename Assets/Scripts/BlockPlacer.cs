@@ -49,6 +49,7 @@ public class BlockPlacer : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                currentBlock.Place();
                 CreateBlock(currentBlock.blockData);
             }
         }
@@ -65,7 +66,7 @@ public class BlockPlacer : MonoBehaviour
         GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
-        currentBlock.Select();
+        currentBlock.SetGhost();
         currentBlock.blockData = blockData;
         Move(Vector3.right);
         GameManager.Instance.IncreaseTarget(blockData.cost);
@@ -83,6 +84,7 @@ public class BlockPlacer : MonoBehaviour
         if (currentBlock != null)
         {
             currentBlock.Select();
+            GameManager.Instance.targetCamera.MoveTo(currentBlock.getPos());
         }
     }
 
@@ -178,6 +180,8 @@ public class BlockPlacer : MonoBehaviour
                 break;
             }
         } while (!isOneOnSpot(currentBlock));
+
+        GameManager.Instance.targetCamera.MoveTo(currentBlock.getPos());
     }
 
 
