@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,8 +17,6 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int pointsMultiply = 1;
     public ProgressCounter progressCounter;
-    float timerH = 0;
-    float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
 
@@ -53,80 +52,6 @@ public class GameManager : MonoBehaviour
         }
 
         if (gameState != GameState.RUN) return;
-
-        if (Input.GetAxis("Horizontal") > axisesThreshold)
-        {
-            if (timerH <= 0)
-            {
-                car.ActionRight();
-                timerH += Time.deltaTime;
-            }
-            else if (timerH >= releaseTime)
-            {
-                timerH = 0;
-            }
-            else
-            {
-                timerH += Time.deltaTime;
-            }
-        }
-        else if (Input.GetAxis("Horizontal") < -axisesThreshold)
-        {
-            if (timerH <= 0)
-            {
-                car.ActionLeft();
-                timerH += Time.deltaTime;
-            }
-            else if (timerH >= releaseTime)
-            {
-                timerH = 0;
-            }
-            else
-            {
-                timerH += Time.deltaTime;
-            }
-        }
-        else
-        {
-            timerH = 0;
-        }
-
-        if (Input.GetAxis("Vertical") > axisesThreshold)
-        {
-            if (timerV <= 0)
-            {
-                car.ActionUp();
-                timerV += Time.deltaTime;
-            }
-            else if (timerV >= releaseTime)
-            {
-                timerV = 0;
-            }
-            else
-            {
-                timerV += Time.deltaTime;
-            }
-        }
-        else if (Input.GetAxis("Vertical") < -axisesThreshold)
-        {
-            if (timerV <= 0)
-            {
-                car.ActionDown();
-                timerV += Time.deltaTime;
-            }
-            else if (timerV >= releaseTime)
-            {
-                timerV = 0;
-            }
-            else
-            {
-                timerV += Time.deltaTime;
-            }
-        }
-        else
-        {
-            timerV = 0;
-        }
     }
 
     public void IncreaseTarget(int value)
@@ -143,7 +68,16 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        this.points += points * pointsMultiply;
+        float mul = 0;
+        foreach (var zone in FindObjectsOfType<BonusZone>())
+        {
+            if (zone.hasBonus)
+            {
+                mul += zone.bonus;
+            }
+        }
+
+        this.points += (int)(points * (pointsMultiply + mul));
         progressCounter.UpdatePoints(this.points);
     }
 
@@ -168,7 +102,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameState = GameState.BUILDING;
-        GameManager.Instance.actionList = new List<ActionsTypes>(GameManager.Instance.actionListSaved);
+        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        Instance.points = 0;
+        Instance.ResetMultiply();
+        Instance.progressCounter.UpdatePoints(points);
+        FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
     }
 }
