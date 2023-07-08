@@ -28,6 +28,8 @@ public class CarScript : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
     public ParticleSystem ps;
+    public AnimationCurve timeSlowdown;
+    public float timeSlowdownDuration;
 
     void Start()
     {
@@ -137,10 +139,13 @@ public class CarScript : MonoBehaviour
 
     IEnumerator AfterDed()
     {
-        Time.timeScale = 0.5f;
-        yield return new WaitForSecondsRealtime(0.7f);
-        Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(0.3f);
+        float time = 0;
+        while (time < timeSlowdownDuration)
+        {
+            Time.timeScale = timeSlowdown.Evaluate(time / timeSlowdownDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
         rb.freezeRotation = true;
 
         GameManager.Instance.GameOver();
