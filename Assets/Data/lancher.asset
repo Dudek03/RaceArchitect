@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fdee0b4adc8bbd3860f4a1da69246d, type: 3}
+  m_Name: lancher
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 119884046968062140, guid: 3e34de20cddc1a4498ea9782ac84cda9, type: 3}
+  img: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
