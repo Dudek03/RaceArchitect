@@ -8,7 +8,9 @@ public class BlockPlacer : MonoBehaviour
     public List<PlaceableBlock> allBlocks;
 
     float timerH = 0;
+    int countH = 0;
     float timerV = 0;
+    int countV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
     public Transform maxBottom;
