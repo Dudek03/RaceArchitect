@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fdee0b4adc8bbd3860f4a1da69246d, type: 3}
   m_Name: lancher
   m_EditorClassIdentifier: 
-  prefab: {fileID: 119884046968062140, guid: 3e34de20cddc1a4498ea9782ac84cda9, type: 3}
+  prefab: {fileID: 582802345559237018, guid: 3e34de20cddc1a4498ea9782ac84cda9, type: 3}
   img: {fileID: 21300000, guid: 5c043df892cb68646881490b088a2a63, type: 3}
   offset: {x: 0, y: 0, z: 0}
   cost: 500

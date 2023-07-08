@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fdee0b4adc8bbd3860f4a1da69246d, type: 3}
   m_Name: Booster
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7259581716953885307, guid: 56ff65eae548a4f4d808e443977f80b7, type: 3}
+  prefab: {fileID: 5165819821521238082, guid: 56ff65eae548a4f4d808e443977f80b7, type: 3}
   img: {fileID: 21300000, guid: ca7d694a4797d4d4687fda95bac7b18d, type: 3}
   offset: {x: 0, y: 0, z: 0}
   cost: 200
