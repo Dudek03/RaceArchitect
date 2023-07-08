@@ -46,7 +46,7 @@ public class BlockPlacer : MonoBehaviour
         }
     }
 
-    public void CreateBlock(GameObject block)
+    public void CreateBlock(BlockData blockData)
     {
         if (currentBlock != null)
         {
@@ -54,7 +54,7 @@ public class BlockPlacer : MonoBehaviour
         }
 
         Vector3 startPos = currentBlock == null ? new Vector3(-1, 0, 0) : currentBlock.getPos();
-        GameObject obj = Instantiate(block, startPos, Quaternion.identity, transform);
+        GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.Select();
