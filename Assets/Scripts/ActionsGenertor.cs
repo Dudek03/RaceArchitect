@@ -31,6 +31,7 @@ public class ActionsGenertor : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {

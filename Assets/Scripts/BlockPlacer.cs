@@ -72,8 +72,12 @@ public class BlockPlacer : MonoBehaviour
             startPos = currentBlock.getPos();
             currentBlock.Unselect();
         }
-
-        GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
+        startPos += blockData.offset;
+        if (isOutOfBound(startPos))
+        {
+            startPos -= blockData.offset;
+        }
+        GameObject obj = Instantiate(blockData.prefab, startPos, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.SetGhost();
@@ -211,5 +215,29 @@ public class BlockPlacer : MonoBehaviour
     bool isOutOfBound(Vector3 pos)
     {
         return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
+    }
+
+
+    public void Clear()
+    {
+        if (currentBlock != null)
+        {
+            currentBlock.Unselect();
+        }
+        currentBlock = null;
+
+        List<PlaceableBlock> toDestroy = new List<PlaceableBlock>();
+        foreach (PlaceableBlock block in allBlocks)
+        {
+            if (block.selectable)
+            {
+                toDestroy.Add(block);
+            }
+        }
+        foreach (PlaceableBlock block in toDestroy)
+        {
+            currentBlock = block;
+            DestroyBlock();
+        }
     }
 }
