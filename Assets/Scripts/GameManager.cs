@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public CarScript car;
     public GameState gameState = GameState.BUILDING;
 
+    public List<ActionsTypes> actionList;
+
     float timerH = 0;
     float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
