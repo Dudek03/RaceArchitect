@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Random = UnityEngine.Random;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
-
 [RequireComponent(typeof(Rigidbody))]
 public class CarScript : MonoBehaviour
 {
@@ -48,7 +46,7 @@ public class CarScript : MonoBehaviour
     public ParticleSystem ps;
     public AnimationCurve winTimeSlowdown;
     public AnimationCurve dedTimeSlowdown;
-    
+
     private float timeAnimation = 0;
     public float flipAnimation = 0.3f;
     public float timeSlowdownDuration;
@@ -221,7 +219,7 @@ public class CarScript : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-     }
+    }
 
     IEnumerator AfterDed()
     {
