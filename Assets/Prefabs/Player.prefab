@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 20000
-  maxSpeed: 10
+  maxSpeed: 40
   deltaSpeed: 5
   speedToForce:
     serializedVersion: 2

@@ -8,7 +8,7 @@ public class CarScript : MonoBehaviour
     public float force = 10f; //Controls velocity multiplier
     public float maxSpeed = 10f; //Controls velocity multiplier
     public float deltaSpeed = 5f;
-    private float currentSpeed;
+    private float currentSpeed = 10f;
     public AnimationCurve speedToForce;
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private LayerMask m_WhatIsCeil;
@@ -24,7 +24,6 @@ public class CarScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentSpeed = maxSpeed;
     }
 
 
@@ -101,5 +100,14 @@ public class CarScript : MonoBehaviour
     public Vector3 GetPos()
     {
         return transform.position;
+    }
+
+    public void IncreaseSpeed(float deltaSpeed)
+    {
+        currentSpeed += deltaSpeed;
+        if (currentSpeed > maxSpeed)
+        {
+            currentSpeed = maxSpeed;
+        }
     }
 }
