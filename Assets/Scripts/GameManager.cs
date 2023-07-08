@@ -117,4 +117,9 @@ public class GameManager : MonoBehaviour
             timerV = 0;
         }
     }
+
+    public void GameOver()
+    {
+        print("GAME OVER");
+    }
 }
