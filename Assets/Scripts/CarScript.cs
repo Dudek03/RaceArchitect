@@ -41,11 +41,12 @@ public class CarScript : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
     public ParticleSystem ps;
+    public AnimationCurve winTimeSlowdown;
+    public AnimationCurve dedTimeSlowdown;
+    
     private float timeAnimation = 0;
     public float flipAnimation = 0.3f;
-    public AnimationCurve timeSlowdown;
     public float timeSlowdownDuration;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -171,6 +172,20 @@ public class CarScript : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        currentSpeed = 10;
+        rb.velocity = Vector3.zero;
+        StartCoroutine(AfterWin());
+    }
+
+
+    IEnumerator AfterWin()
+    {
+        yield return SlowDownTime(winTimeSlowdown);
+        UiManager.Instance.ShowWin();
+    }
+
     public void Die()
     {
         ps.Play();
@@ -188,8 +203,9 @@ public class CarScript : MonoBehaviour
         StartCoroutine(AfterDed());
     }
 
-    IEnumerator AfterDed()
+    IEnumerator SlowDownTime(AnimationCurve timeSlowdown)
     {
+
         float time = 0;
         while (time < timeSlowdownDuration)
         {
@@ -197,10 +213,13 @@ public class CarScript : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+     }
 
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
-
+    IEnumerator AfterDed()
+    {
+        yield return SlowDownTime(dedTimeSlowdown);
         GameManager.Instance.GameOver();
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     public void Reset()
@@ -209,6 +228,7 @@ public class CarScript : MonoBehaviour
         transform.rotation = startRot;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        Time.timeScale = 1;
     }
 
     public void ActionUp()
