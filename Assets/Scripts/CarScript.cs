@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using Random = UnityEngine.Random;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CarScript : MonoBehaviour
@@ -16,6 +19,8 @@ public class CarScript : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsCeil;
     [SerializeField] private Transform m_GroundCheck;
     [SerializeField] private Transform m_CeilCheck;
+    [SerializeField] private Image fill;
+    [SerializeField] private TextMeshProUGUI speedometerNumber;
     const float k_GroundedRadius = .2f;
     const float k_CeilRadius = .2f;
     private bool m_Grounded;
@@ -82,7 +87,10 @@ public class CarScript : MonoBehaviour
         }
 
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
-                    Vector3.right);
+        Vector3.right);
+
+        fill.fillAmount = ((float)currentSpeed / maxSpeed) / 2;
+        speedometerNumber.text = $"{(int)currentSpeed} km/h";
     }
 
 
