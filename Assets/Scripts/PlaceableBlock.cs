@@ -9,6 +9,7 @@ public class PlaceableBlock : MonoBehaviour
     public bool isSelected = false;
     public bool selectable = true;
     private BlockPlacer placer;
+    public BlockData blockData;
 
     void Start()
     {

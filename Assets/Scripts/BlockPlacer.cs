@@ -6,8 +6,7 @@ public class BlockPlacer : MonoBehaviour
 {
     public PlaceableBlock currentBlock;
     public List<PlaceableBlock> allBlocks;
-
-
+    
     float timerH = 0;
     float timerV = 0;
     public float releaseTime = 1; //TODO: bigger first threshold
@@ -20,7 +19,6 @@ public class BlockPlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -33,6 +31,7 @@ public class BlockPlacer : MonoBehaviour
                 currentBlock.Unselect();
                 currentBlock = null;
             }
+
             return;
         }
 
@@ -58,7 +57,9 @@ public class BlockPlacer : MonoBehaviour
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.Select();
+        currentBlock.blockData = blockData;
         Move(Vector3.right);
+        GameManager.Instance.IncreaseTarget(blockData.cost);
     }
 
     public void SelectBlock(PlaceableBlock block)
@@ -68,6 +69,7 @@ public class BlockPlacer : MonoBehaviour
         {
             currentBlock.Unselect();
         }
+
         currentBlock = block;
         if (currentBlock != null)
         {
@@ -80,6 +82,7 @@ public class BlockPlacer : MonoBehaviour
         allBlocks.Remove(currentBlock);
         currentBlock.SelfDestroy();
         currentBlock = null;
+        GameManager.Instance.DecreaseTarget(currentBlock.blockData.cost);
     }
 
     void MoveBlock()
@@ -109,7 +112,6 @@ public class BlockPlacer : MonoBehaviour
         {
             timerV = 0;
         }
-
     }
 
 
@@ -145,7 +147,6 @@ public class BlockPlacer : MonoBehaviour
         {
             timerV += Time.deltaTime;
         }
-
     }
 
     void Move(Vector3 move)
@@ -158,8 +159,7 @@ public class BlockPlacer : MonoBehaviour
                 currentBlock.Move(-move);
                 break;
             }
-        }
-        while (!isOneOnSpot(currentBlock));
+        } while (!isOneOnSpot(currentBlock));
     }
 
 
@@ -172,6 +172,7 @@ public class BlockPlacer : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 
@@ -179,5 +180,4 @@ public class BlockPlacer : MonoBehaviour
     {
         return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
     }
-
 }
