@@ -11,8 +11,11 @@ public class CarScript : MonoBehaviour
     private float currentSpeed;
     public AnimationCurve speedToForce;
     [SerializeField] private LayerMask m_WhatIsGround;
+    [SerializeField] private LayerMask m_WhatIsCeil;
     [SerializeField] private Transform m_GroundCheck;
+    [SerializeField] private Transform m_CeilCheck;
     const float k_GroundedRadius = .2f;
+    const float k_CeilRadius = .2f;
     private bool m_Grounded;
     Rigidbody rb;
     public Animator animator;
@@ -38,7 +41,14 @@ public class CarScript : MonoBehaviour
                 m_Grounded = true;
             }
         }
-
+        Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
+        for (int i = 0; i < colliders2.Length; i++)
+        {
+            if (colliders2[i].gameObject != gameObject)
+            {
+                GameManager.Instance.GameOver();
+            }
+        }
         if (GameManager.Instance.gameState != GameState.RUN) return;
 
         rb.AddForce(force * Time.deltaTime * speedToForce.Evaluate(1 - (rb.velocity.sqrMagnitude / currentSpeed)) *
@@ -73,7 +83,7 @@ public class CarScript : MonoBehaviour
         if (currentSpeed <= 0)
         {
             //TODO: LATER 
-            Debug.Log("YOU LOSE");
+            GameManager.Instance.GameOver();
             currentSpeed = 0;
         }
     }
