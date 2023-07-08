@@ -28,6 +28,8 @@ public class CarScript : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
     public ParticleSystem ps;
+    private float timeAnimation = 0;
+    public float flipAnimation = 0.3f;
 
     void Start()
     {
@@ -40,6 +42,7 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeAnimation -= Time.deltaTime;
         if (upArrowActivate)
         {
             timeUpActivation -= Time.deltaTime;
@@ -64,7 +67,8 @@ public class CarScript : MonoBehaviour
         if (!m_Grounded)
         {
             GameManager.Instance.AddPoints(
-                (int)Math.Ceiling(GameManager.Instance.pointsMultiplication.pointsInAirTime * Time.deltaTime));
+                (int)Math.Ceiling(GameManager.Instance.pointsMultiplication.pointsInAirTime * Time.deltaTime *
+                                  currentSpeed * GameManager.Instance.pointsMultiplication.speedMultiply));
         }
 
         Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
@@ -89,9 +93,11 @@ public class CarScript : MonoBehaviour
     public void ActionRight()
     {
         upArrowActivate = false;
-        if (!m_Grounded)
+        if (!m_Grounded && timeAnimation < 0)
         {
+            timeAnimation = flipAnimation;
             animator.SetTrigger("frontflip");
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
         }
 
@@ -105,8 +111,10 @@ public class CarScript : MonoBehaviour
     public void ActionLeft()
     {
         upArrowActivate = false;
-        if (!m_Grounded)
+        if (!m_Grounded && timeAnimation < 0)
         {
+            timeAnimation = flipAnimation;
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.backFlipIncrease);
             animator.SetTrigger("backflip");
             return;
         }
@@ -128,6 +136,7 @@ public class CarScript : MonoBehaviour
         {
             dir = new Vector3(dir.x, -dir.y, dir.z);
         }
+
         rb.freezeRotation = false;
         rb.AddTorque(Random.insideUnitCircle.normalized * 200);
         rb.AddForce(dir * 10000);
@@ -141,8 +150,8 @@ public class CarScript : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.7f);
         Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(0.3f);
-        rb.freezeRotation = true;
-
+        // rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
         GameManager.Instance.GameOver();
     }
 
@@ -151,6 +160,7 @@ public class CarScript : MonoBehaviour
         transform.position = startPos;
         transform.rotation = startRot;
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     public void ActionUp()

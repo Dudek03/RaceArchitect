@@ -166,6 +166,9 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.BUILDING;
         GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        Instance.points = 0;
+        Instance.ResetMultiply();
+        Instance.progressCounter.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
     }
