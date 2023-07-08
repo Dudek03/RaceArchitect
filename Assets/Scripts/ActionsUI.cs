@@ -43,7 +43,7 @@ public class ActionsUI : MonoBehaviour
         }
 
         progressAction -= Time.deltaTime;
-        actionTimeSlider.value = (timeAction - progressAction) / timeAction;
+        // actionTimeSlider.value = (timeAction - progressAction) / timeAction;
     }
 
     private void MakeAction()
