@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7918d7bf512d666e6be369344d247a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTime: 0.3
+  secondTime: 0.1
+  nextTime: 0.05
 --- !u!1 &63009525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1219,7 @@ MonoBehaviour:
   progressCounter: {fileID: 1794499724425084324}
   releaseTime: 1
   axisesThreshold: 0.1
+  targetCamera: {fileID: 25639830}
 --- !u!114 &689120016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,9 +1482,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399076c63a1c3a066ba3d62c0aaa855d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGhost: 0
   isSelected: 0
   selectable: 0
   blockData: {fileID: 0}
+  ghost: {fileID: 0}
   selected: {fileID: 0}
 --- !u!114 &837511554 stripped
 MonoBehaviour:
@@ -2355,9 +2361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399076c63a1c3a066ba3d62c0aaa855d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGhost: 0
   isSelected: 0
   selectable: 0
   blockData: {fileID: 0}
+  ghost: {fileID: 0}
   selected: {fileID: 0}
 --- !u!1 &1538063300
 GameObject:
@@ -2830,7 +2838,9 @@ MonoBehaviour:
   - {fileID: 1497055237}
   - {fileID: 809070731}
   - {fileID: 1552040891}
-  releaseTime: 1
+  firstTime: 0.3
+  secondTime: 0.15
+  nextTime: 0.08
   axisesThreshold: 0.1
   maxBottom: {fileID: 581690401}
   maxLeft: {fileID: 465678014}
@@ -7206,6 +7216,7 @@ GameObject:
   - component: {fileID: 5415963999992019451}
   - component: {fileID: 4820168924970473247}
   - component: {fileID: 4933204842697410474}
+  - component: {fileID: 8234773064600867742}
   m_Layer: 0
   m_Name: TileHolder
   m_TagString: Untagged
@@ -7213,6 +7224,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8234773064600867742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234773064600867741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6df863b11aa99f594b7fc392d5a91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 7042657063722857606}
+  - {fileID: 5331908635853116816}
+  - {fileID: 332553920811657613}
+  - {fileID: 7995506220889608803}
+  - {fileID: 1552364245075611936}
 --- !u!224 &8297268912756787622
 RectTransform:
   m_ObjectHideFlags: 0

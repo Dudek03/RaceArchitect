@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public ProgressCounter progressCounter;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
+    public TargetCamera targetCamera;
 
     private void Awake()
     {
@@ -110,5 +111,6 @@ public class GameManager : MonoBehaviour
         Instance.progressCounter.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
+        targetCamera.MoveTo(Vector3.zero);
     }
 }
