@@ -99,11 +99,11 @@ public class BlockPlacer : MonoBehaviour
 
         if (Input.GetAxis("Vertical") > axisesThreshold)
         {
-            CheckMoveV(Vector3.up);
+            CheckMoveV(Vector3.up / 2);
         }
         else if (Input.GetAxis("Vertical") < -axisesThreshold)
         {
-            CheckMoveV(Vector3.down);
+            CheckMoveV(Vector3.down / 2);
         }
         else
         {
