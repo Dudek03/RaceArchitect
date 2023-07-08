@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
             gameState = GameState.RUN;
         }
 
+        if (gameState != GameState.RUN) return;
+
         if (Input.GetAxis("Horizontal") > axisesThreshold)
         {
             if (timerH <= 0)

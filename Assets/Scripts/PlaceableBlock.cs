@@ -9,7 +9,6 @@ public class PlaceableBlock : MonoBehaviour
     public bool isSelected = false;
     public bool selectable = true;
     private BlockPlacer placer;
-    
 
     void Start()
     {
@@ -18,6 +17,7 @@ public class PlaceableBlock : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (GameManager.Instance.gameState != GameState.BUILDING) return;
         if (!isSelected)
         {
             placer.SelectBlock(this);
