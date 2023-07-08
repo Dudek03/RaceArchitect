@@ -1414,8 +1414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bb8890c8f1074deb8cbe60553c0bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeholder: {fileID: 7145534873827435786, guid: 8e0542581c767654ba3d244bce228b45,
-    type: 3}
   currentBlock: {fileID: 0}
   allBlocks:
   - {fileID: 1074761457}
