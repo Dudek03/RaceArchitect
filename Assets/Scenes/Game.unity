@@ -1405,6 +1405,24 @@ MonoBehaviour:
   selectable: 0
   blockData: {fileID: 0}
   selected: {fileID: 0}
+--- !u!114 &1552040891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8657457688561360959, guid: eca22d5f0513cdc40a299f84f769756b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4990513859533451549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399076c63a1c3a066ba3d62c0aaa855d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1552040892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4990513859533451549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1594263604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2096,6 +2114,7 @@ Transform:
   - {fileID: 465678014}
   - {fileID: 1222094303}
   - {fileID: 581690401}
+  - {fileID: 1552040892}
   - {fileID: 1074761456}
   - {fileID: 1497055236}
   - {fileID: 809070730}
@@ -2119,6 +2138,7 @@ MonoBehaviour:
   - {fileID: 1074761457}
   - {fileID: 1497055237}
   - {fileID: 809070731}
+  - {fileID: 1552040891}
   releaseTime: 1
   axisesThreshold: 0.1
   maxBottom: {fileID: 581690401}
@@ -3596,6 +3616,79 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &4990513859533451549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1914530304}
+    m_Modifications:
+    - target: {fileID: 5796250587578994570, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_Name
+      value: Meta
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658810387364418412, guid: eca22d5f0513cdc40a299f84f769756b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eca22d5f0513cdc40a299f84f769756b, type: 3}
 --- !u!224 &5073847482183725671
 RectTransform:
   m_ObjectHideFlags: 0

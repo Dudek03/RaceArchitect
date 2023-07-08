@@ -121,6 +121,12 @@ public class CarScript : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        print("WIN");
+        rb.velocity = Vector3.zero;
+    }
+
     public void Die()
     {
         ps.Play();
