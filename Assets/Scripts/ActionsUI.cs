@@ -44,8 +44,7 @@ public class ActionsUI : MonoBehaviour
         }
 
         progressAction -= Time.deltaTime;
-        if (arrowControllers.Count != 0)
-            arrowControllers.FirstOrDefault().UpdateProgress((timeAction - progressAction) / timeAction);
+        arrowControllers.FirstOrDefault().UpdateProgress((timeAction - progressAction) / timeAction);
     }
 
     private void MakeAction()
@@ -71,7 +70,9 @@ public class ActionsUI : MonoBehaviour
             }
 
             GameManager.Instance.actionList.Remove(action);
-            arrowControllers.Remove(arrowControllers.FirstOrDefault());
+
+            if (arrowControllers.Count != 0)
+                arrowControllers.Remove(arrowControllers.FirstOrDefault());
             Destroy(transform.GetChild(0).gameObject);
         }
     }

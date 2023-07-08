@@ -2839,8 +2839,8 @@ MonoBehaviour:
   - {fileID: 809070731}
   - {fileID: 1552040891}
   firstTime: 0.3
-  secondTime: 0.15
-  nextTime: 0.08
+  secondTime: 0.1
+  nextTime: 0.05
   axisesThreshold: 0.1
   maxBottom: {fileID: 581690401}
   maxLeft: {fileID: 465678014}
