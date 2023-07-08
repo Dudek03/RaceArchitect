@@ -30,6 +30,8 @@ public class CarScript : MonoBehaviour
     public ParticleSystem ps;
     private float timeAnimation = 0;
     public float flipAnimation = 0.3f;
+    public AnimationCurve timeSlowdown;
+    public float timeSlowdownDuration;
 
     void Start()
     {
@@ -42,7 +44,6 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeAnimation -= Time.deltaTime;
         if (upArrowActivate)
         {
             timeUpActivation -= Time.deltaTime;
@@ -146,12 +147,15 @@ public class CarScript : MonoBehaviour
 
     IEnumerator AfterDed()
     {
-        Time.timeScale = 0.5f;
-        yield return new WaitForSecondsRealtime(0.7f);
-        Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(0.3f);
-        // rb.freezeRotation = true;
+        float time = 0;
+        while (time < timeSlowdownDuration)
+        {
+            Time.timeScale = timeSlowdown.Evaluate(time / timeSlowdownDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
+
         GameManager.Instance.GameOver();
     }
 

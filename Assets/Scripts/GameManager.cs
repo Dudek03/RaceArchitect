@@ -48,6 +48,11 @@ public class GameManager : MonoBehaviour
             gameState = GameState.RUN;
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && gameState == GameState.RUN)
+        {
+            car.Die();
+        }
+
         if (gameState != GameState.RUN) return;
 
         if (Input.GetAxis("Horizontal") > axisesThreshold)
@@ -170,7 +175,6 @@ public class GameManager : MonoBehaviour
     {
         pointsMultiply = 1;
     }
-
     public void GameOver()
     {
         gameState = GameState.BUILDING;

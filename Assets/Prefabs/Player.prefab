@@ -9930,6 +9930,49 @@ MonoBehaviour:
   upArrowActivate: 0
   maxTimeUpActivation: 1
   ps: {fileID: 7650387007060723469}
+  timeSlowdown:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -5.836021
+      outSlope: -5.836021
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.14238013
+      value: 0.16906655
+      inSlope: 2.1904345
+      outSlope: 2.1904345
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09393851
+      outWeight: 0.039558757
+    - serializedVersion: 3
+      time: 0.72965354
+      value: 0.5317297
+      inSlope: -0.005085915
+      outSlope: -0.005085915
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13911633
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.2707219
+      outSlope: 1.2707219
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05884864
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeSlowdownDuration: 1
   flipAnimation: 0.3
 --- !u!136 &2215752919088825241
 CapsuleCollider:
