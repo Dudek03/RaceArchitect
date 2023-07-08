@@ -72,8 +72,12 @@ public class BlockPlacer : MonoBehaviour
             startPos = currentBlock.getPos();
             currentBlock.Unselect();
         }
-
-        GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
+        startPos += blockData.offset;
+        if (isOutOfBound(startPos))
+        {
+            startPos -= blockData.offset;
+        }
+        GameObject obj = Instantiate(blockData.prefab, startPos, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
         currentBlock.SetGhost();
