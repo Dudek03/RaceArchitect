@@ -8,7 +8,7 @@ public class MenuButtons : MonoBehaviour
     [SerializeField] private GameObject CreditCanvas;
     public void PlayBtn()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
 
     public void TutorialBtn()
