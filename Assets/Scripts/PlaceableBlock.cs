@@ -10,7 +10,7 @@ public class PlaceableBlock : MonoBehaviour
     public bool selectable = true;
     private BlockPlacer placer;
     private MeshRenderer meshRenderer;
-    
+
 
     void Start()
     {
@@ -20,6 +20,7 @@ public class PlaceableBlock : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (GameManager.Instance.gameState != GameState.BUILDING) return;
         if (!isSelected)
         {
             placer.SelectBlock(this);
