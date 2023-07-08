@@ -25,6 +25,19 @@ public class CarScript : MonoBehaviour
     public bool upArrowActivate = false;
     public int maxTimeUpActivation = 1;
     private float timeUpActivation = 0;
+
+    public bool downArrowActivate = false;
+    public int maxTimeDownActivation = 1;
+    private float timeDownActivation = 0;
+
+    public bool leftArrowActivate = false;
+    public int maxTimeLeftActivation = 1;
+    private float timeLeftActivation = 0;
+
+    public bool rightArrowActivate = false;
+    public int maxTimeRightActivation = 1;
+    private float timeRightActivation = 0;
+
     private Vector3 startPos;
     private Quaternion startRot;
     public ParticleSystem ps;
@@ -52,6 +65,34 @@ public class CarScript : MonoBehaviour
                 upArrowActivate = false;
             }
         }
+
+        if (downArrowActivate)
+        {
+            timeDownActivation -= Time.deltaTime;
+            if (timeDownActivation <= 0)
+            {
+                downArrowActivate = false;
+            }
+        }
+
+        if (leftArrowActivate)
+        {
+            timeLeftActivation -= Time.deltaTime;
+            if (timeLeftActivation <= 0)
+            {
+                leftArrowActivate = false;
+            }
+        }
+
+        if (rightArrowActivate)
+        {
+            timeRightActivation -= Time.deltaTime;
+            if (timeRightActivation <= 0)
+            {
+                rightArrowActivate = false;
+            }
+        }
+
 
         m_Grounded = false;
 
@@ -94,6 +135,10 @@ public class CarScript : MonoBehaviour
     public void ActionRight()
     {
         upArrowActivate = false;
+        downArrowActivate = false;
+        leftArrowActivate = false;
+        rightArrowActivate = true;
+        timeRightActivation = maxTimeRightActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
             timeAnimation = flipAnimation;
@@ -101,17 +146,15 @@ public class CarScript : MonoBehaviour
             GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
         }
-
-        currentSpeed += deltaSpeed;
-        if (currentSpeed > maxSpeed)
-        {
-            currentSpeed = maxSpeed;
-        }
     }
 
     public void ActionLeft()
     {
         upArrowActivate = false;
+        downArrowActivate = false;
+        leftArrowActivate = true;
+        rightArrowActivate = false;
+        timeLeftActivation = maxTimeLeftActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
             timeAnimation = flipAnimation;
@@ -154,6 +197,7 @@ public class CarScript : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 
         GameManager.Instance.GameOver();
@@ -170,12 +214,19 @@ public class CarScript : MonoBehaviour
     public void ActionUp()
     {
         upArrowActivate = true;
+        downArrowActivate = false;
+        leftArrowActivate = false;
+        rightArrowActivate = false;
         timeUpActivation = maxTimeUpActivation;
     }
 
     public void ActionDown()
     {
         upArrowActivate = false;
+        downArrowActivate = true;
+        leftArrowActivate = false;
+        rightArrowActivate = false;
+        timeDownActivation = maxTimeDownActivation;
     }
 
     public Vector3 GetPos()
