@@ -11,7 +11,10 @@ public class BlockPlacer : MonoBehaviour
     int countH = 0;
     float timerV = 0;
     int countV = 0;
-    public float releaseTime = 1; //TODO: bigger first threshold
+
+    public float firstTime = 0.3f;
+    public float secondTime = 0.1f;
+    public float nextTime = 0.05f;
     public float axisesThreshold = 0.1f;
     public Transform maxBottom;
     public Transform maxLeft;
@@ -104,6 +107,7 @@ public class BlockPlacer : MonoBehaviour
         else
         {
             timerH = 0;
+            countH = 0;
         }
 
         if (Input.GetAxis("Vertical") > axisesThreshold)
@@ -117,41 +121,49 @@ public class BlockPlacer : MonoBehaviour
         else
         {
             timerV = 0;
+            countV = 0;
         }
     }
 
 
     void CheckMoveH(Vector3 move)
     {
-        if (timerH <= 0)
+        if (timerH - getTotalCountedTime(countH) >= 0)
         {
             Move(move);
-            timerH += Time.deltaTime;
+            countH++;
         }
-        else if (timerH >= releaseTime)
-        {
-            timerH = 0;
-        }
-        else
-        {
-            timerH += Time.deltaTime;
-        }
+        timerH += Time.deltaTime;
     }
 
     void CheckMoveV(Vector3 move)
     {
-        if (timerV <= 0)
+        if (timerV - getTotalCountedTime(countV) >= 0)
         {
             Move(move);
-            timerV += Time.deltaTime;
+            countV++;
         }
-        else if (timerV >= releaseTime)
+        timerV += Time.deltaTime;
+
+    }
+
+    float getTotalCountedTime(int count)
+    {
+        if (count == 0)
         {
-            timerV = 0;
+            return 0;
+        }
+        else if (count == 1)
+        {
+            return firstTime;
+        }
+        else if (count == 2)
+        {
+            return firstTime + secondTime;
         }
         else
         {
-            timerV += Time.deltaTime;
+            return firstTime + secondTime + (count - 2) * nextTime;
         }
     }
 
