@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Ramp
   m_EditorClassIdentifier: 
   prefab: {fileID: 7142540726840648649, guid: bb8e19952b554a147817839226bec918, type: 3}
-  img: {fileID: 0}
+  img: {fileID: 21300000, guid: f13ce824dc0042c43af0028eab0a55b1, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
+  cost: 0

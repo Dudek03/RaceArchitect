@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
   image: {fileID: 4717705042673238238}
+  costText: {fileID: 2933805427201310368}
 --- !u!114 &4636104775549422377
 MonoBehaviour:
   m_ObjectHideFlags: 0
