@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
 {
-    public GameObject placeholder; //TODO: Remove
     public PlaceableBlock currentBlock;
     public List<PlaceableBlock> allBlocks;
 
@@ -44,10 +43,6 @@ public class BlockPlacer : MonoBehaviour
             {
                 DestroyBlock();
             }
-        }
-        if (Input.GetKeyDown("1"))
-        {
-            CreateBlock(placeholder);
         }
     }
 
