@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -391,7 +391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &422890563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3009424343903981573}
-  - {fileID: 9087760084283382631}
   m_Father: {fileID: 761105695}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -749,10 +748,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04ac150a66473547ad4cca9a08e6107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsMultiplication: {fileID: 11400000, guid: ac38a0afef2623244b4ee58d2a968d69,
+    type: 2}
   car: {fileID: 837511554}
   gameState: 0
   actionListSaved: 
   actionList: 
+  targetGame: 500
+  points: 0
+  pointsMultiply: 1
+  progressCounter: {fileID: 4141511018999123616}
   releaseTime: 1
   axisesThreshold: 0.1
 --- !u!1 &715150792
@@ -919,6 +924,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8618645131752227962}
+  - {fileID: 9087760084283382631}
   - {fileID: 1301713890}
   - {fileID: 422890563}
   m_Father: {fileID: 0}
@@ -989,6 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   selectable: 0
+  blockData: {fileID: 0}
 --- !u!114 &837511554 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
@@ -1318,6 +1325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   selectable: 0
+  blockData: {fileID: 0}
 --- !u!1001 &1594263604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2668,8 +2676,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5521241304761805892}
   m_HandleRect: {fileID: 7560556065126702528}
   m_Direction: 0
-  m_Value: 1.0000155
-  m_Size: 0.9943174
+  m_Value: 1
+  m_Size: 0.92333364
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2756,7 +2764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -7.8760505, y: 0}
+  m_AnchoredPosition: {x: -106.19994, y: 0}
   m_SizeDelta: {x: 1386.2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3750832093767704205
@@ -3396,7 +3404,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.596}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3695,7 +3703,7 @@ RectTransform:
   - {fileID: 1799149741485761330}
   - {fileID: 5935325632461333920}
   - {fileID: 6417977257822400267}
-  m_Father: {fileID: 422890563}
+  m_Father: {fileID: 761105695}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}

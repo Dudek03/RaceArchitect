@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,14 @@ public class CarScript : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
+                GameManager.Instance.ResetMultiply();
             }
+        }
+
+        if (!m_Grounded)
+        {
+            GameManager.Instance.AddPoints(
+                (int)Math.Ceiling(GameManager.Instance.pointsMultiplication.pointsInAirTime * Time.deltaTime));
         }
 
         Collider[] colliders2 = Physics.OverlapSphere(m_CeilCheck.position, k_CeilRadius, m_WhatIsCeil);
