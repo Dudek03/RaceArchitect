@@ -31,6 +31,7 @@ public class ActionsUI : MonoBehaviour
             progressAction = 0;
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             MakeAction();
@@ -74,6 +75,8 @@ public class ActionsUI : MonoBehaviour
 
     public void PopulateList()
     {
+        foreach (Transform child in transform) { Destroy(child.gameObject); }
+
         foreach (ActionsTypes action in GameManager.Instance.actionList)
         {
             foreach (Action item in prefabs)
