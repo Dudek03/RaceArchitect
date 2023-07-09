@@ -459,7 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 0}
   image: {fileID: 4717705042673238238}
-  costText: {fileID: 0}
+  costText: {fileID: 7329405981394743959}
 --- !u!114 &4636104775549422377
 MonoBehaviour:
   m_ObjectHideFlags: 0
