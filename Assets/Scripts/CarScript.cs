@@ -316,7 +316,7 @@ public class CarScript : MonoBehaviour
         rightArrowActivate = false;
         if (!m_Grounded)
         {
-            GameManager.Instance.car.ApplyForce(force_slam);
+            ApplyForce(force_slam);
             rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
             slam = true;
         }

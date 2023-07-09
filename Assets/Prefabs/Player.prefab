@@ -10282,9 +10282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 20000
-  force_slam: {x: 0, y: 0, z: 0}
-  rdash: {x: 0, y: 0, z: 0}
-  ldash: {x: 0, y: 0, z: 0}
+  force_slam: {x: 0, y: -200, z: 0}
+  rdash: {x: 1100, y: 0, z: 0}
+  ldash: {x: -2650, y: 0, z: 0}
   maxSpeed: 40
   deltaSpeed: 5
   speedToForce:

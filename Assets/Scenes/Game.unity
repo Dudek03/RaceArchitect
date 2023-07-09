@@ -9292,7 +9292,7 @@ PrefabInstance:
     - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
         type: 3}
       propertyPath: force_slam.y
-      value: -100
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
         type: 3}
@@ -10651,7 +10651,6 @@ MonoBehaviour:
   - type: 3
     prefab: {fileID: 9009684428320208907, guid: c492e154b34c4a43292fef2b3d5f39ef,
       type: 3}
-  timeAction: 3
   actionTimeSlider: {fileID: 0}
 --- !u!224 &7940456827385590286
 RectTransform:
