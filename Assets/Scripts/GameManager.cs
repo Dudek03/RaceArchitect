@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        progressCounter.UpdateMaxValue(targetGame);
+        Reset();
     }
 
     // Update is called once per frame
@@ -105,12 +105,24 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameState = GameState.BUILDING;
-        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
-        Instance.points = 0;
-        Instance.ResetMultiply();
-        Instance.progressCounter.UpdatePoints(points);
+        actionList = actionListSaved.Select(a => a).ToList();
+        points = 0;
+        ResetMultiply();
+        progressCounter.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
         targetCamera.MoveTo(Vector3.zero);
+    }
+
+    void Reset()
+    {
+        targetGame = 500;
+        progressCounter.UpdateMaxValue(targetGame);
+        gameState = GameState.BUILDING;
+        ResetMultiply();
+        car.Reset();
+        progressCounter.UpdatePoints(points);
+        targetCamera.MoveTo(Vector3.zero);
+        FindObjectOfType<ActionsUI>().PopulateList();
     }
 }
