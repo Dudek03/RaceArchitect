@@ -13,7 +13,7 @@ public class MenuButtons : MonoBehaviour
 
     public void TutorialBtn()
     {
-        //todo
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void CreditsBtn()
