@@ -16,14 +16,4 @@ MonoBehaviour:
   img: {fileID: 21300000, guid: 77aefee218a5ef144ad221c59142f92b, type: 3}
   offset: {x: 0, y: 0, z: 0}
   cost: 100
-  tooltip: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia,
-    eros sit amet dignissim egestas, felis enim cursus urna, quis suscipit tortor
-    enim at felis. Cras at dictum ante. Morbi nibh metus, congue bibendum elit vel,
-    viverra posuere arcu. Mauris rhoncus dictum enim, ac gravida sem fermentum id.
-    Sed tristique venenatis fringilla. Nam id porttitor purus. Praesent et efficitur
-    orci, et iaculis arcu. Nullam commodo vel massa ac vehicula. Mauris a tempus
-    lacus. Integer scelerisque purus sagittis elementum luctus. Duis laoreet congue
-    metus, in rutrum libero pulvinar ac. Fusce tincidunt leo eget mattis imperdiet.
-    Suspendisse id velit eget ex placerat porta cursus quis lacus. Vestibulum faucibus
-    vel libero id iaculis. Curabitur posuere erat nisl, mollis faucibus quam pellentesque
-    in. Nullam dignissim metus eget eros tempus euismod.
+  tooltip: Why did the chicken cross the road?

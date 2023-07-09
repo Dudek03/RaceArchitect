@@ -16,3 +16,4 @@ MonoBehaviour:
   img: {fileID: 21300000, guid: cfd17fe3e3522de2d94c89eef28964b9, type: 3}
   offset: {x: 0, y: 0, z: 0}
   cost: 200
+  tooltip: Dashing left or slaming into it brakes it.
