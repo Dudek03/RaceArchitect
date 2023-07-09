@@ -351,7 +351,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085464702343837735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -361,8 +361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 20.642}
-  m_SizeDelta: {x: 179.8036, y: 108.71}
+  m_AnchoredPosition: {x: -0, y: 120}
+  m_SizeDelta: {x: 220, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7886468022372543912
 CanvasRenderer:
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13333334, g: 0.13333334, b: 0.13333334, a: 0.9098039}
+  m_Color: {r: 0.13333334, g: 0.13333334, b: 0.13333334, a: 0.9607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1025,7 +1025,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000033379, y: -1.6}
-  m_SizeDelta: {x: 160, y: 100}
+  m_SizeDelta: {x: 190, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1163022091156654880
 CanvasRenderer:
@@ -1055,17 +1055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia,
-    eros sit amet dignissim egestas, felis enim cursus urna, quis suscipit tortor
-    enim at felis. Cras at dictum ante. Morbi nibh metus, congue bibendum elit vel,
-    viverra posuere arcu. Mauris rhoncus dictum enim, ac gravida sem fermentum id.
-    Sed tristique venenatis fringilla. Nam id porttitor purus. Praesent et efficitur
-    orci, et iaculis arcu. Nullam commodo vel massa ac vehicula. Mauris a tempus
-    lacus. Integer scelerisque purus sagittis elementum luctus. Duis laoreet congue
-    metus, in rutrum libero pulvinar ac. Fusce tincidunt leo eget mattis imperdiet.
-    Suspendisse id velit eget ex placerat porta cursus quis lacus. Vestibulum faucibus
-    vel libero id iaculis. Curabitur posuere erat nisl, mollis faucibus quam pellentesque
-    in. Nullam dignissim metus eget eros tempus euismod.
+  m_text: JUST A SIMPLE RAMP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1092,15 +1082,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5.5
+  m_fontSize: 20
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 2
-  m_fontSizeMax: 72
+  m_fontSizeMin: 8
+  m_fontSizeMax: 20
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
