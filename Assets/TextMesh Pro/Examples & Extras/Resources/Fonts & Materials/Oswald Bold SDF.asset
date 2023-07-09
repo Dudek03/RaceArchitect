@@ -1982,10 +1982,6 @@ MonoBehaviour:
     m_Y: 366
     m_Width: 15
     m_Height: 657
-  - m_X: 432
-    m_Y: 300
-    m_Width: 33
-    m_Height: 66
   - m_X: 708
     m_Y: 67
     m_Width: 2
