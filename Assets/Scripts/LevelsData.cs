@@ -20,4 +20,5 @@ public class Level
     public List<ActionsTypes> actions;
     public int minNumberOfAction;
     public int maxNumberOfAction;
+    public float timeAction;
 }
