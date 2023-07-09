@@ -24,8 +24,8 @@ MonoBehaviour:
     minNumberOfAction: 4
     maxNumberOfAction: 6
     timeAction: 3
-  - metaMaxPos1: {x: 10, y: 2, z: 0}
-    metaMaxPos2: {x: 15, y: -2, z: 0}
+  - metaMaxPos1: {x: 15, y: 2, z: 0}
+    metaMaxPos2: {x: 20, y: -2, z: 0}
     startTarget: 0
     pointsTarget: 1
     blocks:
@@ -34,8 +34,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
     - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
     actions: 000000000100000003000000
-    minNumberOfAction: 17
-    maxNumberOfAction: 25
+    minNumberOfAction: 8
+    maxNumberOfAction: 10
     timeAction: 3
   - metaMaxPos1: {x: 15, y: 5, z: 0}
     metaMaxPos2: {x: 20, y: -3, z: 0}
