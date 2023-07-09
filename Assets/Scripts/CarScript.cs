@@ -63,7 +63,7 @@ public class CarScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRot = transform.rotation;
-        startPosAndRotIsSet = true;
+        startPosAndRotIsSet = true; fill.fillAmount = 0;
     }
 
 
