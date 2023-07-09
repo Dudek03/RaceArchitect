@@ -33,8 +33,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
     - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
     actions: 000000000100000003000000
-    minNumberOfAction: 8
-    maxNumberOfAction: 12
+    minNumberOfAction: 17
+    maxNumberOfAction: 25
     timeAction: 3
   - metaMaxPos1: {x: 15, y: 5, z: 0}
     metaMaxPos2: {x: 20, y: -3, z: 0}

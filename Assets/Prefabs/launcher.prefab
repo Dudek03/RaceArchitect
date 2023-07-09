@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time2Launch: 0.3
-  force: {x: 500, y: 4000, z: 0}
+  force: {x: 500, y: 3000, z: 0}
   lforce: {x: -2700, y: 4000, z: 0}
-  superJumpMultiplication: 2
+  superJumpMultiplication: 1.3
   sound: {fileID: 6075277983866894477}
 --- !u!65 &2186627413942190776
 BoxCollider:
