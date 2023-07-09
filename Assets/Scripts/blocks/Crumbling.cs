@@ -18,6 +18,12 @@ namespace blocks
                 GameManager.Instance.car.slam = false;
                 GameManager.Instance.car.Rot_reset();
             }
+            else if (GameManager.Instance.car.leftArrowActivate)
+            {
+                GameManager.Instance.car.ApplyForce(GameManager.Instance.car.ldash);
+                Destroy(crumbling_road);
+                GameManager.Instance.progressCounter.UpdatePoints(road_destroy);
+            }
         }
     }
 }
