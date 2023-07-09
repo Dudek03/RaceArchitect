@@ -18,9 +18,26 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int pointsMultiply = 1;
     public ProgressCounter progressCounter;
-    public float releaseTime = 1; //TODO: bigger first threshold
-    public float axisesThreshold = 0.1f;
     public TargetCamera targetCamera;
+    public Winner meta;
+
+    public LevelsData levelData;
+    public Level currentLevelData => levelData.levels[currentLevel];
+
+
+    public List<LevelPoints> totalPointsArray = new List<LevelPoints>();
+
+    public int currentLevel = 0;
+    public ActionsGenertor actionsGenertor;
+    public CardsController cardsController;
+    public BlockPlacer blockPlacer;
+
+    public struct LevelPoints
+    {
+        public int idx;
+        public int points;
+
+    }
     public ScoreInfoManager scoreInfoManager;
     private int scoreInFly = 0;
 
@@ -39,7 +56,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        progressCounter.UpdateMaxValue(targetGame);
+        SetupNewLevel();
+        Reset();
     }
 
     // Update is called once per frame
@@ -117,12 +135,71 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameState = GameState.BUILDING;
-        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
-        Instance.points = 0;
-        Instance.ResetMultiply();
-        Instance.progressCounter.UpdatePoints(points);
+        actionList = actionListSaved.Select(a => a).ToList();
+        points = 0;
+        ResetMultiply();
+        progressCounter.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
         targetCamera.MoveTo(Vector3.zero);
+    }
+
+    void Reset()
+    {
+        points = 0;
+        progressCounter.UpdateMaxValue(targetGame);
+        gameState = GameState.BUILDING;
+        ResetMultiply();
+        car.Reset();
+        progressCounter.UpdatePoints(points);
+        targetCamera.MoveTo(Vector3.zero);
+        FindObjectOfType<ActionsUI>().PopulateList();
+    }
+
+    public void Win()
+    {
+
+        LevelPoints l = new LevelPoints();
+        l.points = points;
+        l.idx = currentLevel;
+
+        int i = totalPointsArray.FindIndex(e => e.idx == currentLevel);
+        if (i < 0)
+        {
+            totalPointsArray.Add(l);
+        }
+        else
+        {
+            totalPointsArray[i] = l;
+        }
+    }
+
+    public int GetTotalPoints()
+    {
+        int sum = 0;
+        foreach (LevelPoints levelPoints in totalPointsArray)
+        {
+            sum += levelPoints.points;
+        }
+        return sum;
+    }
+
+    private void SetupNewLevel()
+    {
+        actionsGenertor.Generate();
+        cardsController.GenerateCards();
+        blockPlacer.Clear();
+        targetGame = currentLevelData.startTarget;
+        meta.SetPos(levelData.levels[currentLevel].metaMaxPos1, levelData.levels[currentLevel].metaMaxPos2);
+    }
+
+    public void NextLevel()
+    {
+        if (currentLevel + 1 < levelData.levels.Count)
+        {
+            currentLevel++;
+            SetupNewLevel();
+            Reset();
+        }
     }
 }

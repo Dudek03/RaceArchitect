@@ -8,27 +8,24 @@ using UnityEngine;
 public class ActionsGenertor : MonoBehaviour
 {
     public ActionsUI actionsUI;
-    public int minNumberOfAction;
-    public int maxNumberOfAction;
 
-    void Start()
-    {
-        generate();
-        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
 
-        actionsUI.PopulateList();
-    }
 
-    void generate()
+    public void Generate()
     {
         GameManager.Instance.actionListSaved.Clear();
-        int length = UnityEngine.Random.Range(minNumberOfAction, maxNumberOfAction);
+        GameManager.Instance.actionList.Clear();
+        int length = UnityEngine.Random.Range(GameManager.Instance.currentLevelData.minNumberOfAction, GameManager.Instance.currentLevelData.maxNumberOfAction);
         Array values = Enum.GetValues(typeof(ActionsTypes));
         for (int i = 0; i < length; i++)
         {
             GameManager.Instance.actionListSaved.Add(
-                (ActionsTypes)values.GetValue(UnityEngine.Random.Range(0, values.Length)));
+                GameManager.Instance.currentLevelData.actions[UnityEngine.Random.Range(0, GameManager.Instance.currentLevelData.actions.Count)]
+            );
         }
+
+        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        actionsUI.PopulateList();
     }
 
 
