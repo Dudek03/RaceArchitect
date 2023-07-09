@@ -63,6 +63,7 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeAnimation -= Time.deltaTime;
         if (upArrowActivate)
         {
             timeUpActivation -= Time.deltaTime;
@@ -150,9 +151,10 @@ public class CarScript : MonoBehaviour
         timeRightActivation = maxTimeRightActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
+            print("FLIP");
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             timeAnimation = flipAnimation;
             animator.SetTrigger("frontflip");
-            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
         }
     }
@@ -166,8 +168,8 @@ public class CarScript : MonoBehaviour
         timeLeftActivation = maxTimeLeftActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
-            timeAnimation = flipAnimation;
             GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.backFlipIncrease);
+            timeAnimation = flipAnimation;
             animator.SetTrigger("backflip");
             return;
         }
