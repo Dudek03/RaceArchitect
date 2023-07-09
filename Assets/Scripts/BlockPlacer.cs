@@ -239,5 +239,7 @@ public class BlockPlacer : MonoBehaviour
             currentBlock = block;
             DestroyBlock();
         }
+
+        GameManager.Instance.targetCamera.MoveTo(Vector3.zero);
     }
 }
