@@ -28,6 +28,7 @@ namespace blocks
                 Destroy(crumbling_road);
                 GameManager.Instance.progressCounter.UpdatePoints(road_destroy);
                 GameManager.Instance.ProgressCounterNoThreshold.UpdatePoints(road_destroy);
+                GameManager.Instance.car.leftArrowActivate = false;
                 bumSound.Play();
                 dashSound.Play();
             }
