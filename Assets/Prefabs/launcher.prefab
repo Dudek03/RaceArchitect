@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time2Launch: 0.3
   force: {x: 500, y: 4000, z: 0}
+  lforce: {x: -2700, y: 4000, z: 0}
   superJumpMultiplication: 2
 --- !u!65 &2186627413942190776
 BoxCollider:

@@ -9,4 +9,7 @@ public class BlockData : ScriptableObject
     public Sprite img;
     public Vector3 offset;
     public int cost=300;
+    [TextArea(minLines:3,maxLines:5)]
+    public string tooltip;
+
 }

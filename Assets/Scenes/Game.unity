@@ -2063,7 +2063,7 @@ MonoBehaviour:
   targetCamera: {fileID: 25639830}
   meta: {fileID: 1552040893}
   levelData: {fileID: 11400000, guid: 4da5950af0c59eddcbb358e7b3ecc354, type: 2}
-  currentLevel: 0
+  currentLevel: 2
   actionsGenertor: {fileID: 1660737626}
   cardsController: {fileID: 8234773064600867742}
   blockPlacer: {fileID: 1914530305}
@@ -7168,6 +7168,21 @@ PrefabInstance:
       propertyPath: fill
       value: 
       objectReference: {fileID: 2903629417734798932}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
+      propertyPath: ldash.x
+      value: -2650
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
+      propertyPath: rdash.x
+      value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
+      propertyPath: force_slam.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
         type: 3}
       propertyPath: speedometerNumber
