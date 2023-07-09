@@ -6531,6 +6531,21 @@ PrefabInstance:
       objectReference: {fileID: 2903629417734798932}
     - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
         type: 3}
+      propertyPath: ldash.x
+      value: -2650
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
+      propertyPath: rdash.x
+      value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
+      propertyPath: force_slam.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814812265905353057, guid: a973d3feff6596c4d9f6bc8963dd4353,
+        type: 3}
       propertyPath: speedometerNumber
       value: 
       objectReference: {fileID: 1777263724894395033}

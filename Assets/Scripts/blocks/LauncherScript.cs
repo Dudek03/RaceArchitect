@@ -7,6 +7,7 @@ public class LauncherScript : MonoBehaviour
 {
     public float time2Launch = 2f;
     public Vector3 force;
+    public Vector3 lforce;
     public float superJumpMultiplication = 2;
     private float timer = 0;
     private bool start_launch = false;
@@ -35,6 +36,11 @@ public class LauncherScript : MonoBehaviour
         if (GameManager.Instance.car.upArrowActivate)
         {
             GameManager.Instance.car.ApplyForce(force * superJumpMultiplication);
+        }
+
+        if (GameManager.Instance.car.leftArrowActivate)
+        {
+            GameManager.Instance.car.ApplyForce(lforce);
         }
         else
         {
