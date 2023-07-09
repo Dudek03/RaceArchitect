@@ -11,6 +11,7 @@ public class LauncherScript : MonoBehaviour
     public float superJumpMultiplication = 2;
     private float timer = 0;
     private bool start_launch = false;
+    public AudioSource sound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,8 @@ public class LauncherScript : MonoBehaviour
 
     void Launch()
     {
-        if(GameManager.Instance.gameState != GameState.RUN) return;
+        if (GameManager.Instance.gameState != GameState.RUN) return;
+        sound.Play();
         if (GameManager.Instance.car.upArrowActivate)
         {
             GameManager.Instance.car.ApplyForce(force * superJumpMultiplication);

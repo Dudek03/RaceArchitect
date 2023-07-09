@@ -62,6 +62,9 @@ public class CarScript : MonoBehaviour
     public float flipAnimation = 0.3f;
     public float timeSlowdownDuration;
 
+    public AudioSource winSound;
+    public AudioSource loseSound;
+    public AudioSource dashSound;
     void Start()
     {
         slam = false;
@@ -181,8 +184,8 @@ public class CarScript : MonoBehaviour
         }
         if (m_Grounded)
         {
-            Debug.Log("me");
             GameManager.Instance.car.ApplyForce(rdash);
+            dashSound.Play();
         }
     }
 
@@ -211,6 +214,7 @@ public class CarScript : MonoBehaviour
     {
         if (GameManager.Instance.gameState != GameState.RUN) return;
         GameManager.Instance.Win();
+        winSound.Play();
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
         GameManager.Instance.gameState = GameState.WINLOSE;
@@ -233,6 +237,7 @@ public class CarScript : MonoBehaviour
         if (GameManager.Instance.gameState != GameState.RUN) return;
         GameManager.Instance.gameState = GameState.DEATH;
         ps.Play();
+        loseSound.Play();
 
         Vector3 dir = Random.insideUnitCircle.normalized;
         if (dir.y < 0)
