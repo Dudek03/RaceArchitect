@@ -16,12 +16,14 @@ public class ActionsUI : MonoBehaviour
 
     public List<Action> prefabs;
     private List<ArrowController> arrowControllers;
-    public float timeAction = 3;
+
     private float progressAction = 0;
     public Slider actionTimeSlider;
+    private float timeAction;
 
     private void Start()
     {
+        timeAction = GameManager.Instance.currentLevelData.timeAction;
         progressAction = timeAction;
     }
 

@@ -23,9 +23,10 @@ MonoBehaviour:
     actions: 000000000100000003000000
     minNumberOfAction: 4
     maxNumberOfAction: 6
-  - metaMaxPos1: {x: 13, y: 2, z: 0}
+    timeAction: 3
+  - metaMaxPos1: {x: 10, y: 2, z: 0}
     metaMaxPos2: {x: 15, y: -2, z: 0}
-    startTarget: -1000
+    startTarget: 0
     pointsTarget: 1
     blocks:
     - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
@@ -34,6 +35,35 @@ MonoBehaviour:
     actions: 000000000100000003000000
     minNumberOfAction: 8
     maxNumberOfAction: 12
+    timeAction: 3
+  - metaMaxPos1: {x: 15, y: 5, z: 0}
+    metaMaxPos2: {x: 20, y: -3, z: 0}
+    startTarget: 100
+    pointsTarget: 1
+    blocks:
+    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
+    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
+    - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
+    actions: 00000000010000000300000002000000
+    minNumberOfAction: 8
+    maxNumberOfAction: 12
+    timeAction: 3
+  - metaMaxPos1: {x: 15, y: 5, z: 0}
+    metaMaxPos2: {x: 20, y: -3, z: 0}
+    startTarget: 500
+    pointsTarget: 1
+    blocks:
+    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
+    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
+    - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
+    - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
+    - {fileID: 11400000, guid: c9761994081d4e1418cf48e807c6500b, type: 2}
+    actions: 00000000010000000300000002000000
+    minNumberOfAction: 10
+    maxNumberOfAction: 14
+    timeAction: 3
   - metaMaxPos1: {x: 15, y: 5, z: 0}
     metaMaxPos2: {x: 20, y: -3, z: 0}
     startTarget: 1000
@@ -46,33 +76,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
     - {fileID: 11400000, guid: c9761994081d4e1418cf48e807c6500b, type: 2}
     actions: 00000000010000000300000002000000
-    minNumberOfAction: 8
-    maxNumberOfAction: 12
-  - metaMaxPos1: {x: 15, y: 5, z: 0}
-    metaMaxPos2: {x: 20, y: -3, z: 0}
-    startTarget: 1000
-    pointsTarget: 1
-    blocks:
-    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
-    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
-    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
-    - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
-    - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
-    - {fileID: 11400000, guid: c9761994081d4e1418cf48e807c6500b, type: 2}
-    actions: 00000000010000000300000002000000
-    minNumberOfAction: 8
-    maxNumberOfAction: 12
-  - metaMaxPos1: {x: 15, y: 5, z: 0}
-    metaMaxPos2: {x: 20, y: -3, z: 0}
-    startTarget: 1000
-    pointsTarget: 1
-    blocks:
-    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
-    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
-    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
-    - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
-    - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
-    - {fileID: 11400000, guid: c9761994081d4e1418cf48e807c6500b, type: 2}
-    actions: 00000000010000000300000002000000
-    minNumberOfAction: 8
-    maxNumberOfAction: 12
+    minNumberOfAction: 12
+    maxNumberOfAction: 15
+    timeAction: 2
