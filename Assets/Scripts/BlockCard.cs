@@ -18,7 +18,7 @@ public class BlockCard : MonoBehaviour
     public void SetData(BlockData d)
     {
         data = d;
-        image.sprite = data.img;
+        image.overrideSprite = data.img;
         costText.text = data.cost.ToString();
     }
 

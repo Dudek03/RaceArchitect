@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next (dont work)
+  m_text: Next (shoudl work)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1582,7 +1582,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 644294760}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 689120015}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4673425906480489014}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: HideWin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &644294760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,6 +1933,9 @@ MonoBehaviour:
   meta: {fileID: 1552040893}
   levelData: {fileID: 11400000, guid: 4da5950af0c59eddcbb358e7b3ecc354, type: 2}
   currentLevel: 0
+  actionsGenertor: {fileID: 1660737626}
+  cardsController: {fileID: 8234773064600867742}
+  blockPlacer: {fileID: 1914530305}
 --- !u!114 &689120016
 MonoBehaviour:
   m_ObjectHideFlags: 0

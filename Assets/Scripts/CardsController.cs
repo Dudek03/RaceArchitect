@@ -11,10 +11,9 @@ public class CardsController : MonoBehaviour
     void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
-        GenerateCards();
     }
 
-    void GenerateCards()
+    public void GenerateCards()
     {
         foreach (Transform child in transform)
         {
@@ -25,8 +24,8 @@ public class CardsController : MonoBehaviour
         var blocks = GameManager.Instance.currentLevelData.blocks;
         foreach (var block in blocks)
         {
-            Instantiate(cardPrefab, transform);
-            BlockCard c = cardPrefab.GetComponent<BlockCard>();
+            GameObject obj = Instantiate(cardPrefab, transform);
+            BlockCard c = obj.GetComponent<BlockCard>();
             c.SetData(block);
             cards.Add(c);
         }

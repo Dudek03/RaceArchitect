@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int pointsMultiply = 1;
     public ProgressCounter progressCounter;
-
     public TargetCamera targetCamera;
     public Winner meta;
 
@@ -28,6 +27,9 @@ public class GameManager : MonoBehaviour
     public List<LevelPoints> totalPointsArray = new List<LevelPoints>();
 
     public int currentLevel = 0;
+    public ActionsGenertor actionsGenertor;
+    public CardsController cardsController;
+    public BlockPlacer blockPlacer;
 
     public struct LevelPoints
     {
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupNewLevel();
         Reset();
     }
 
@@ -131,10 +134,7 @@ public class GameManager : MonoBehaviour
 
     void Reset()
     {
-        meta.SetPos(levelData.levels[currentLevel].metaMaxPos1, levelData.levels[currentLevel].metaMaxPos2);
-
         points = 0;
-        targetGame = 500;
         progressCounter.UpdateMaxValue(targetGame);
         gameState = GameState.BUILDING;
         ResetMultiply();
@@ -172,8 +172,22 @@ public class GameManager : MonoBehaviour
         return sum;
     }
 
+    private void SetupNewLevel()
+    {
+        actionsGenertor.Generate();
+        cardsController.GenerateCards();
+        blockPlacer.Clear();
+        targetGame = currentLevelData.startTarget;
+        meta.SetPos(levelData.levels[currentLevel].metaMaxPos1, levelData.levels[currentLevel].metaMaxPos2);
+    }
+
     public void NextLevel()
     {
-
+        if (currentLevel + 1 < levelData.levels.Count)
+        {
+            currentLevel++;
+            SetupNewLevel();
+            Reset();
+        }
     }
 }

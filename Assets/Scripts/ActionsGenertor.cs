@@ -9,13 +9,7 @@ public class ActionsGenertor : MonoBehaviour
 {
     public ActionsUI actionsUI;
 
-    void Start()
-    {
-        Generate();
-        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
 
-        actionsUI.PopulateList();
-    }
 
     public void Generate()
     {
@@ -29,6 +23,9 @@ public class ActionsGenertor : MonoBehaviour
                 GameManager.Instance.currentLevelData.actions[UnityEngine.Random.Range(0, GameManager.Instance.currentLevelData.actions.Count)]
             );
         }
+
+        GameManager.Instance.actionList = GameManager.Instance.actionListSaved.Select(a => a).ToList();
+        actionsUI.PopulateList();
     }
 
 
