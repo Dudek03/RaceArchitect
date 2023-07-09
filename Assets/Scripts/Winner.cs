@@ -17,7 +17,11 @@ public class Winner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GameManager.Instance.points < GameManager.Instance.targetGame && GameManager.Instance.currentLevelData.pointsTarget) return;
+        if (GameManager.Instance.points < GameManager.Instance.targetGame && GameManager.Instance.currentLevelData.pointsTarget)
+        {
+            other.BroadcastMessage("Die");
+            return;
+        };
         other.BroadcastMessage("Win");
         foreach (ParticleSystem particle in particles)
         {

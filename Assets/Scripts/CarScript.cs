@@ -183,7 +183,6 @@ public class CarScript : MonoBehaviour
         currentSpeed -= deltaSpeed;
         if (currentSpeed <= 0)
         {
-            //TODO: LATER 
             Die();
         }
     }
@@ -244,7 +243,6 @@ public class CarScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         yield return SlowDownTime(dedTimeSlowdown);
         GameManager.Instance.GameOver();
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     public void Reset()
@@ -258,6 +256,7 @@ public class CarScript : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
         }
         Time.timeScale = 1;
         currentSpeed = 10f;
