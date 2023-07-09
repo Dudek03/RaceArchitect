@@ -10,6 +10,7 @@ public class BlockCard : MonoBehaviour
     BlockPlacer placer;
     public Image image;
     public TMP_Text costText;
+    public TMP_Text tooltipText;
     private void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
@@ -20,6 +21,7 @@ public class BlockCard : MonoBehaviour
         data = d;
         image.overrideSprite = data.img;
         costText.text = data.cost.ToString();
+        tooltipText.text = data.tooltip;
     }
 
 
