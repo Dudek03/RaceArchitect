@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public ProgressCounter progressCounter;
     public float releaseTime = 1; //TODO: bigger first threshold
     public float axisesThreshold = 0.1f;
+    public TargetCamera targetCamera;
+    public ScoreInfoManager scoreInfoManager;
+    private int scoreInFly = 0;
 
     private void Awake()
     {
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
+        if (Instance.gameState != GameState.RUN) return;
         float mul = 0;
         foreach (var zone in FindObjectsOfType<BonusZone>())
         {
@@ -78,7 +82,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        this.points += (int)(points * (pointsMultiply + mul));
+        var addingPoints = (int)(points * (pointsMultiply + mul));
+        this.points += addingPoints;
+        scoreInFly += addingPoints;
+        scoreInfoManager.UpdateScore(scoreInFly);
+        scoreInfoManager.UpdateBonus((int)(pointsMultiply + mul));
+        scoreInfoManager.UpdateBonusZone((int)mul);
+        scoreInfoManager.UpdateBonusFlip(pointsMultiply);
         progressCounter.UpdatePoints(this.points);
     }
 
@@ -90,16 +100,20 @@ public class GameManager : MonoBehaviour
             pointsMultiply = 1;
         }
 
-        if (pointsMultiply > 10)
+        if (pointsMultiply > 20)
         {
-            pointsMultiply = 10;
+            pointsMultiply = 20;
         }
     }
 
     public void ResetMultiply()
     {
         pointsMultiply = 1;
+        scoreInFly = 0;
+        scoreInfoManager.UpdateScore(scoreInFly);
+        scoreInfoManager.Reset();
     }
+
     public void GameOver()
     {
         gameState = GameState.BUILDING;
@@ -109,5 +123,6 @@ public class GameManager : MonoBehaviour
         Instance.progressCounter.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
+        targetCamera.MoveTo(Vector3.zero);
     }
 }

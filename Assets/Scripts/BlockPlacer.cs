@@ -8,8 +8,13 @@ public class BlockPlacer : MonoBehaviour
     public List<PlaceableBlock> allBlocks;
 
     float timerH = 0;
+    int countH = 0;
     float timerV = 0;
-    public float releaseTime = 1; //TODO: bigger first threshold
+    int countV = 0;
+
+    public float firstTime = 0.3f;
+    public float secondTime = 0.1f;
+    public float nextTime = 0.05f;
     public float axisesThreshold = 0.1f;
     public Transform maxBottom;
     public Transform maxLeft;
@@ -44,6 +49,7 @@ public class BlockPlacer : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                currentBlock.Place();
                 CreateBlock(currentBlock.blockData);
             }
         }
@@ -51,16 +57,30 @@ public class BlockPlacer : MonoBehaviour
 
     public void CreateBlock(BlockData blockData)
     {
-        if (currentBlock != null)
+        Vector3 startPos;
+        if (currentBlock == null)
         {
+            startPos = new Vector3(-1, 0, 0);
+        }
+        else if (currentBlock.isGhost)
+        {
+            startPos = currentBlock.getPos() - Vector3.right - currentBlock.blockData.offset;
             currentBlock.Unselect();
         }
-
-        Vector3 startPos = currentBlock == null ? new Vector3(-1, 0, 0) : currentBlock.getPos();
-        GameObject obj = Instantiate(blockData.prefab, startPos + blockData.offset, Quaternion.identity, transform);
+        else
+        {
+            startPos = currentBlock.getPos();
+            currentBlock.Unselect();
+        }
+        startPos += blockData.offset;
+        if (isOutOfBound(startPos))
+        {
+            startPos -= blockData.offset;
+        }
+        GameObject obj = Instantiate(blockData.prefab, startPos, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
-        currentBlock.Select();
+        currentBlock.SetGhost();
         currentBlock.blockData = blockData;
         Move(Vector3.right);
         GameManager.Instance.IncreaseTarget(blockData.cost);
@@ -78,6 +98,7 @@ public class BlockPlacer : MonoBehaviour
         if (currentBlock != null)
         {
             currentBlock.Select();
+            GameManager.Instance.targetCamera.MoveTo(currentBlock.getPos());
         }
     }
 
@@ -102,6 +123,7 @@ public class BlockPlacer : MonoBehaviour
         else
         {
             timerH = 0;
+            countH = 0;
         }
 
         if (Input.GetAxis("Vertical") > axisesThreshold)
@@ -115,41 +137,49 @@ public class BlockPlacer : MonoBehaviour
         else
         {
             timerV = 0;
+            countV = 0;
         }
     }
 
 
     void CheckMoveH(Vector3 move)
     {
-        if (timerH <= 0)
+        if (timerH - getTotalCountedTime(countH) >= 0)
         {
             Move(move);
-            timerH += Time.deltaTime;
+            countH++;
         }
-        else if (timerH >= releaseTime)
-        {
-            timerH = 0;
-        }
-        else
-        {
-            timerH += Time.deltaTime;
-        }
+        timerH += Time.deltaTime;
     }
 
     void CheckMoveV(Vector3 move)
     {
-        if (timerV <= 0)
+        if (timerV - getTotalCountedTime(countV) >= 0)
         {
             Move(move);
-            timerV += Time.deltaTime;
+            countV++;
         }
-        else if (timerV >= releaseTime)
+        timerV += Time.deltaTime;
+
+    }
+
+    float getTotalCountedTime(int count)
+    {
+        if (count == 0)
         {
-            timerV = 0;
+            return 0;
+        }
+        else if (count == 1)
+        {
+            return firstTime;
+        }
+        else if (count == 2)
+        {
+            return firstTime + secondTime;
         }
         else
         {
-            timerV += Time.deltaTime;
+            return firstTime + secondTime + (count - 2) * nextTime;
         }
     }
 
@@ -164,6 +194,8 @@ public class BlockPlacer : MonoBehaviour
                 break;
             }
         } while (!isOneOnSpot(currentBlock));
+
+        GameManager.Instance.targetCamera.MoveTo(currentBlock.getPos());
     }
 
 
@@ -183,5 +215,31 @@ public class BlockPlacer : MonoBehaviour
     bool isOutOfBound(Vector3 pos)
     {
         return pos.x < maxLeft.position.x || pos.y > maxTop.position.y || pos.y < maxBottom.position.y;
+    }
+
+
+    public void Clear()
+    {
+        if (currentBlock != null)
+        {
+            currentBlock.Unselect();
+        }
+        currentBlock = null;
+
+        List<PlaceableBlock> toDestroy = new List<PlaceableBlock>();
+        foreach (PlaceableBlock block in allBlocks)
+        {
+            if (block.selectable)
+            {
+                toDestroy.Add(block);
+            }
+        }
+        foreach (PlaceableBlock block in toDestroy)
+        {
+            currentBlock = block;
+            DestroyBlock();
+        }
+
+        GameManager.Instance.targetCamera.MoveTo(Vector3.zero);
     }
 }

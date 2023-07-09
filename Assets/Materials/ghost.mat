@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: selected
+  m_Name: ghost
   m_Shader: {fileID: -6465566751694194690, guid: 771424b9fe15fbab798227f6d918004e,
     type: 3}
   m_Parent: {fileID: 0}
@@ -55,5 +55,5 @@ Material:
     - _QueueOffset: 0
     - _size: 0.8
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.61960787, b: 0, a: 1}
   m_BuildTextureStacks: []

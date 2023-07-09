@@ -68,6 +68,7 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeAnimation -= Time.deltaTime;
         if (upArrowActivate)
         {
             timeUpActivation -= Time.deltaTime;
@@ -154,9 +155,10 @@ public class CarScript : MonoBehaviour
         timeRightActivation = maxTimeRightActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
+            print("FLIP");
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             timeAnimation = flipAnimation;
             animator.SetTrigger("frontflip");
-            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
         }
     }
@@ -170,8 +172,8 @@ public class CarScript : MonoBehaviour
         timeLeftActivation = maxTimeLeftActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
-            timeAnimation = flipAnimation;
             GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.backFlipIncrease);
+            timeAnimation = flipAnimation;
             animator.SetTrigger("backflip");
             return;
         }
@@ -186,6 +188,7 @@ public class CarScript : MonoBehaviour
 
     public void Win()
     {
+        if (GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
         GameManager.Instance.gameState = GameState.WINLOSE;
@@ -205,6 +208,7 @@ public class CarScript : MonoBehaviour
     }
     public void Die()
     {
+        if (GameManager.Instance.gameState != GameState.RUN) return;
         GameManager.Instance.gameState = GameState.DEATH;
         ps.Play();
 

@@ -15,6 +15,7 @@ public class ActionsUI : MonoBehaviour
     }
 
     public List<Action> prefabs;
+    private List<ArrowController> arrowControllers;
     public float timeAction = 3;
     private float progressAction = 0;
     public Slider actionTimeSlider;
@@ -43,7 +44,8 @@ public class ActionsUI : MonoBehaviour
         }
 
         progressAction -= Time.deltaTime;
-        actionTimeSlider.value = (timeAction - progressAction) / timeAction;
+        if (arrowControllers.Count > 0)
+            arrowControllers.FirstOrDefault().UpdateProgress((timeAction - progressAction) / timeAction);
     }
 
     private void MakeAction()
@@ -69,19 +71,30 @@ public class ActionsUI : MonoBehaviour
             }
 
             GameManager.Instance.actionList.Remove(action);
+
+            if (arrowControllers.Count != 0)
+                arrowControllers.Remove(arrowControllers.FirstOrDefault());
             Destroy(transform.GetChild(0).gameObject);
         }
     }
 
     public void PopulateList()
     {
-        foreach (Transform child in transform) { Destroy(child.gameObject); }
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
 
+        arrowControllers = new List<ArrowController>();
         foreach (ActionsTypes action in GameManager.Instance.actionList)
         {
             foreach (Action item in prefabs)
             {
-                if (action == item.type) Instantiate(item.prefab, transform);
+                if (action == item.type)
+                {
+                    GameObject gameObject = Instantiate(item.prefab, transform);
+                    arrowControllers.Add(gameObject.GetComponent<ArrowController>());
+                }
             }
         }
     }
