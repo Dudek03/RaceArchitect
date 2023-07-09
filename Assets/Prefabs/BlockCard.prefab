@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942d9bbf495437fa0b7664dc6f66ec1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+  data: {fileID: 0}
   image: {fileID: 4717705042673238238}
   costText: {fileID: 2933805427201310368}
 --- !u!114 &4636104775549422377

@@ -17,9 +17,24 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int pointsMultiply = 1;
     public ProgressCounter progressCounter;
-    public float releaseTime = 1; //TODO: bigger first threshold
-    public float axisesThreshold = 0.1f;
+
     public TargetCamera targetCamera;
+    public Winner meta;
+
+    public LevelsData levelData;
+    public Level currentLevelData => levelData.levels[currentLevel];
+
+
+    public List<LevelPoints> totalPointsArray = new List<LevelPoints>();
+
+    public int currentLevel = 0;
+
+    public struct LevelPoints
+    {
+        public int idx;
+        public int points;
+
+    }
 
     private void Awake()
     {
@@ -116,6 +131,9 @@ public class GameManager : MonoBehaviour
 
     void Reset()
     {
+        meta.SetPos(levelData.levels[currentLevel].metaMaxPos1, levelData.levels[currentLevel].metaMaxPos2);
+
+        points = 0;
         targetGame = 500;
         progressCounter.UpdateMaxValue(targetGame);
         gameState = GameState.BUILDING;
@@ -124,5 +142,38 @@ public class GameManager : MonoBehaviour
         progressCounter.UpdatePoints(points);
         targetCamera.MoveTo(Vector3.zero);
         FindObjectOfType<ActionsUI>().PopulateList();
+    }
+
+    public void Win()
+    {
+
+        LevelPoints l = new LevelPoints();
+        l.points = points;
+        l.idx = currentLevel;
+
+        int i = totalPointsArray.FindIndex(e => e.idx == currentLevel);
+        if (i < 0)
+        {
+            totalPointsArray.Add(l);
+        }
+        else
+        {
+            totalPointsArray[i] = l;
+        }
+    }
+
+    public int GetTotalPoints()
+    {
+        int sum = 0;
+        foreach (LevelPoints levelPoints in totalPointsArray)
+        {
+            sum += levelPoints.points;
+        }
+        return sum;
+    }
+
+    public void NextLevel()
+    {
+
     }
 }

@@ -15,7 +15,9 @@ public class Level
     public Vector3 metaMaxPos2;
 
     public int startTarget;
-    public bool pointsEnabled;
+    public bool pointsTarget;
     public List<BlockData> blocks;
     public List<ActionsTypes> actions;
+    public int minNumberOfAction;
+    public int maxNumberOfAction;
 }

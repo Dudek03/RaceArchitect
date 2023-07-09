@@ -185,6 +185,7 @@ public class CarScript : MonoBehaviour
     public void Win()
     {
         if (GameManager.Instance.gameState != GameState.RUN) return;
+        GameManager.Instance.Win();
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
         GameManager.Instance.gameState = GameState.WINLOSE;

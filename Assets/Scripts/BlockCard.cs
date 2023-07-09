@@ -13,6 +13,11 @@ public class BlockCard : MonoBehaviour
     private void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
+    }
+
+    public void SetData(BlockData d)
+    {
+        data = d;
         image.sprite = data.img;
         costText.text = data.cost.ToString();
     }
