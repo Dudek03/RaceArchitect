@@ -44,6 +44,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
     - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
     - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
+    - {fileID: 11400000, guid: c9761994081d4e1418cf48e807c6500b, type: 2}
     actions: 00000000010000000300000002000000
     minNumberOfAction: 8
     maxNumberOfAction: 12
