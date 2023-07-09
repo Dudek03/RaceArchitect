@@ -25,11 +25,11 @@ MonoBehaviour:
     maxNumberOfAction: 6
   - metaMaxPos1: {x: 13, y: 2, z: 0}
     metaMaxPos2: {x: 15, y: -2, z: 0}
-    startTarget: 500
+    startTarget: -1000
     pointsTarget: 1
     blocks:
-    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
     - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
     - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
     actions: 000000000100000003000000
     minNumberOfAction: 8
