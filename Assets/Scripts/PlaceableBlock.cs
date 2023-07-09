@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlaceableBlock : MonoBehaviour
 {
 
+    public bool isGhost = false;
     public bool isSelected = false;
     public bool selectable = true;
     private BlockPlacer placer;
     public BlockData blockData;
+    public GameObject ghost;
     public GameObject selected;
 
     void Start()
@@ -33,12 +35,25 @@ public class PlaceableBlock : MonoBehaviour
 
     public void Select()
     {
+        ghost.SetActive(false);
         selected.SetActive(true);
         isSelected = true;
+        isGhost = false;
     }
+
     public void Unselect()
     {
+        if (isGhost)
+        {
+            if (placer == null)
+            {
+                placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
+            }
+            placer.DestroyBlock();
+        }
+        ghost.SetActive(false);
         selected.SetActive(false);
+        isGhost = false;
         isSelected = false;
     }
 
@@ -50,5 +65,19 @@ public class PlaceableBlock : MonoBehaviour
     internal void SelfDestroy()
     {
         Destroy(gameObject);
+    }
+
+    public void SetGhost()
+    {
+        ghost.SetActive(true);
+        selected.SetActive(false);
+        isSelected = true;
+        isGhost = true;
+    }
+
+    public void Place()
+    {
+        ghost.SetActive(false);
+        isGhost = false;
     }
 }

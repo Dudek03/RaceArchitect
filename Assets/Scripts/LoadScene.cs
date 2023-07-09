@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public void loadScene(int id)
+    public void Load(string name)
     {
 
-        SceneManager.LoadScene(id);
+        SceneManager.LoadScene(name);
     }
 }

@@ -10,7 +10,6 @@ public class BlockCard : MonoBehaviour
     BlockPlacer placer;
     public Image image;
     public TMP_Text costText;
-
     private void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
