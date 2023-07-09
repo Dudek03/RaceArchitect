@@ -16,3 +16,5 @@ MonoBehaviour:
   img: {fileID: 21300000, guid: ca7d694a4797d4d4687fda95bac7b18d, type: 3}
   offset: {x: 0, y: 0, z: 0}
   cost: 200
+  tooltip: Give you more speed and Arrow Rigth give you even more speed. Arrow Down
+    give some points.

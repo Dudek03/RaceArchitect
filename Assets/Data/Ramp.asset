@@ -16,3 +16,4 @@ MonoBehaviour:
   img: {fileID: 21300000, guid: f13ce824dc0042c43af0028eab0a55b1, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
   cost: 100
+  tooltip: Just simple Ramp.
