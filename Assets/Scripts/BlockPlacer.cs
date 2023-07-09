@@ -19,6 +19,10 @@ public class BlockPlacer : MonoBehaviour
     public Transform maxBottom;
     public Transform maxLeft;
     public Transform maxTop;
+    public AudioSource placeSound;
+    public AudioSource moveSound;
+    public AudioSource delSound;
+
 
 
     // Start is called before the first frame update
@@ -45,6 +49,7 @@ public class BlockPlacer : MonoBehaviour
             MoveBlock();
             if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
             {
+                delSound.Play();
                 DestroyBlock();
             }
             if (Input.GetKeyDown(KeyCode.Space))
@@ -77,6 +82,7 @@ public class BlockPlacer : MonoBehaviour
         {
             startPos -= blockData.offset;
         }
+        placeSound.Play();
         GameObject obj = Instantiate(blockData.prefab, startPos, Quaternion.identity, transform);
         currentBlock = obj.GetComponent<PlaceableBlock>();
         allBlocks.Add(currentBlock);
@@ -146,6 +152,7 @@ public class BlockPlacer : MonoBehaviour
     {
         if (timerH - getTotalCountedTime(countH) >= 0)
         {
+            moveSound.Play();
             Move(move);
             countH++;
         }
@@ -156,6 +163,7 @@ public class BlockPlacer : MonoBehaviour
     {
         if (timerV - getTotalCountedTime(countV) >= 0)
         {
+            moveSound.Play();
             Move(move);
             countV++;
         }
