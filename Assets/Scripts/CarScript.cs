@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using blocks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CarScript : MonoBehaviour
 {
     public float force = 10f; //Controls velocity multiplier
+    public Vector3 force2; //Slam force
     public float maxSpeed = 10f; //Controls velocity multiplier
     public float deltaSpeed = 5f;
     private float currentSpeed = 10f;
@@ -31,7 +34,8 @@ public class CarScript : MonoBehaviour
     private float timeUpActivation = 0;
 
     public bool downArrowActivate = false;
-    public int maxTimeDownActivation = 1;
+    public bool slam = false;
+    public int maxTimeDownActivation = 3;
     private float timeDownActivation = 0;
 
     public bool leftArrowActivate = false;
@@ -55,6 +59,7 @@ public class CarScript : MonoBehaviour
 
     void Start()
     {
+        slam = false;
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRot = transform.rotation;
@@ -65,6 +70,7 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeAnimation -= Time.deltaTime;
         if (upArrowActivate)
         {
             timeUpActivation -= Time.deltaTime;
@@ -100,7 +106,6 @@ public class CarScript : MonoBehaviour
                 rightArrowActivate = false;
             }
         }
-
 
         m_Grounded = false;
 
@@ -152,9 +157,10 @@ public class CarScript : MonoBehaviour
         timeRightActivation = maxTimeRightActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
+            print("FLIP");
+            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             timeAnimation = flipAnimation;
             animator.SetTrigger("frontflip");
-            GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.frontFlipIncrease);
             return;
         }
     }
@@ -168,8 +174,8 @@ public class CarScript : MonoBehaviour
         timeLeftActivation = maxTimeLeftActivation;
         if (!m_Grounded && timeAnimation < 0)
         {
-            timeAnimation = flipAnimation;
             GameManager.Instance.AddMultiply(GameManager.Instance.pointsMultiplication.backFlipIncrease);
+            timeAnimation = flipAnimation;
             animator.SetTrigger("backflip");
             return;
         }
@@ -199,6 +205,10 @@ public class CarScript : MonoBehaviour
         UiManager.Instance.ShowWin();
     }
 
+    public void Rot_reset()
+    {
+        transform.rotation = startRot;
+    }
     public void Die()
     {
         if (GameManager.Instance.gameState != GameState.RUN) return;
@@ -262,12 +272,19 @@ public class CarScript : MonoBehaviour
         timeUpActivation = maxTimeUpActivation;
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void ActionDown()
     {
         upArrowActivate = false;
         downArrowActivate = true;
         leftArrowActivate = false;
         rightArrowActivate = false;
+        if (!m_Grounded)
+        {
+            GameManager.Instance.car.ApplyForce(force2);
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
+            slam = true;
+        }
         timeDownActivation = maxTimeDownActivation;
     }
 

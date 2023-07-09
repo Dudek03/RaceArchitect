@@ -45,6 +45,10 @@ public class PlaceableBlock : MonoBehaviour
     {
         if (isGhost)
         {
+            if (placer == null)
+            {
+                placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
+            }
             placer.DestroyBlock();
         }
         ghost.SetActive(false);

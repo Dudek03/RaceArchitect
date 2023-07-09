@@ -9,7 +9,6 @@ public class LauncherScript : MonoBehaviour
     public Vector3 force;
     public float superJumpMultiplication = 2;
     private float timer = 0;
-    
     private bool start_launch = false;
 
     // Start is called before the first frame update
@@ -32,6 +31,7 @@ public class LauncherScript : MonoBehaviour
 
     void Launch()
     {
+        if(GameManager.Instance.gameState != GameState.RUN) return;
         if (GameManager.Instance.car.upArrowActivate)
         {
             GameManager.Instance.car.ApplyForce(force * superJumpMultiplication);
