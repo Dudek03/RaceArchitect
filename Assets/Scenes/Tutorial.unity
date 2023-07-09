@@ -293,35 +293,35 @@ MonoBehaviour:
   m_text: 'HOW TO WIN:
 
 
-    You win the game when you cross the finish line while
-    having more points then treshould that was set in the building phase.
+    To win cross the finish line while attaining points
+    threshold
 
 
-    HOW
-    CAN YOU LOSE:
+    HOW CAN YOU LOSE:
 
 
-    You die falling off, due to spikes, reaching 0 speed or landing
-    upside down.
+    You die when you fall off, touch spikes,
+    reach 0 speed or touch anything with your roof.
 
 
     POINTS SYSTEM:
 
 
-    To build a track you will need blocks.
-    Every block you use increases a thresould, so take care about the number of blocks
-    you use and their type. You can set blocks using space button and remove them
-    using backspace or delete on your keyboard. Starting treshould is 500.
+    To
+    build a track you will need blocks. Every block you use increases points threshold,
+    so be careful with amount ant type of blocks you place. To palce a block use
+    space button, you remove them using Delete or Backspace buttons. Your starting
+    threshold is 500 points.
 
 
-    You
-    can reach points for spending time in air - min. 20 points per second. You can 
-    increase this number doing acrobatic moves by left and right arrow, which is
-    also increased by multiplier depending on your time in air.
+    You can gain points for spending time in air,
+    min. 20 points per second. It''s further multiplied based on your speed, the
+    higher it is the bigger is multiplier You can also gain multiplier by doing acrobatics
+    which can be done by using right or left arrow action mid-air.
 
 
     Points are
-    rounded down to the nearest integer number.'
+    rounded down to the nearest whole number.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -850,7 +850,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: throws the car up. Using up arrow, the height is two times bigger
+  m_text: It launches you upwards, using up arrow actions boosts it twofolds. You
+    can also use left arrow action on it to launch leftwards.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1223,27 +1224,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You can control your car with displayed on the top of your screen inputs
-    with specific order. Do this using a space button. Every 3 seconds input will
-    execute automatically and is active for 1 second. When new input executes, the
-    previous one gets overwritten.
+  m_text: 'Using space button you can perform additional arrow actions. Arrows you
+    can use are displayed in order at the top left of the screen. If not used they
+    perform automatically after 3 seconds. Actions are active for 1 second after
+    performing them. When you perform action it overwrites previous one.
 
 
-    LEFT ARROW - the car slows down by 5 kph
-    when on the ground. Does a back flip beeing in air.
+    LEFT
+    ARROW - When on launcher it launches you leftwards. When on crumbling road it
+    destroys it and does a dash leftwards. While mid-air does backflip.
 
 
-    RIGHT ARROW - you can
-    increase the power of any booster by two times. The car does a front flip during
-    a flight.
+    RIGHT
+    ARROW - When on booster it increses its power twofolds. While on road it does
+    a dash forward. While mid-air does a frontflip.
 
 
-    UP ARROW - increases the powert of the launcher by two times.
+    UP ARROW - When on launcher
+    increases its power twofolds. While on road gives you points ofr 3 seconds. While
+    mid-air it stabilizes your car.
 
 
-    DOWN
-    ARROW - beeing in air you can slam and totally break a destroyed road for 300
-    points.'
+    DOWN ARROW - While on booster it gives
+    you points until you leave. While mid-air you slam downwards, if you happen to
+    hit crumbling road during that time it breaks and gives you points.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -1454,7 +1458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 77aefee218a5ef144ad221c59142f92b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfd17fe3e3522de2d94c89eef28964b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4215,8 +4219,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: you lose if you touch them. If you are within 3 blocks range above them
-    you get x6 multiplier
+  m_text: When you touch them you lose. If you are within 3 blocks above them while
+    mid-air you gain x6 multiplier.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4655,9 +4659,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "W, A, S, D, arrows - move block\nEnter - lody, par\xF3wkas\nSpace - set
-    block or start current action\nR - restart the run\nDelete / Backspace - \nQ
-    / E - move a camera in build mode\nTab - choose block in build mode"
+  m_text: 'W, S, A, D; arrows - Move block
+
+    Enter - Enter ride mode
+
+    Space
+    - Place block or perform action
+
+    R - Restart the run
+
+    Delete / Backspace
+    - Remove block
+
+    Q / E - Move camera in build mode
+
+    Tab - Changes block
+    to next one'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4877,6 +4894,7 @@ GameObject:
   - component: {fileID: 1576110287}
   - component: {fileID: 1576110286}
   - component: {fileID: 1576110285}
+  - component: {fileID: 1576110288}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4958,6 +4976,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1576110288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576110284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1593955772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,7 +5664,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: you reach 300 points by breaking this block.
+  m_text: If you slam into it by using down arrow action mid-air you destroy it.
+    You can also destroy it bu using left arrow action while on it. You gain 300
+    points for breaking it.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -5737,7 +5801,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'increases speed by 8 kph, and 16 kph with right arrow button '
+  m_text: It increases your speed by 8mph, Can be boosted by right arrow action.
+    By using down arrow action you can start gaining points until you leave.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
