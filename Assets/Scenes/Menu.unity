@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 157173928}
   - component: {fileID: 157173930}
   - component: {fileID: 157173929}
-  - component: {fileID: 157173931}
   m_Layer: 0
   m_Name: Credits
   m_TagString: Untagged
@@ -229,7 +228,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 157173931}
+      - m_Target: {fileID: 582677781}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: CreditsBtn
         m_Mode: 1
@@ -241,19 +240,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &157173931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157173927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56119b43546f2924f92b97c19d59e1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CreditCanvas: {fileID: 1766281101}
 --- !u!1 &174763530
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +251,6 @@ GameObject:
   - component: {fileID: 174763531}
   - component: {fileID: 174763535}
   - component: {fileID: 174763533}
-  - component: {fileID: 174763532}
   - component: {fileID: 174763536}
   m_Layer: 0
   m_Name: Tutorial
@@ -295,19 +280,6 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &174763532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174763530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56119b43546f2924f92b97c19d59e1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CreditCanvas: {fileID: 1766281101}
 --- !u!114 &174763533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 174763532}
+      - m_Target: {fileID: 582677781}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: TutorialBtn
         m_Mode: 1
@@ -588,6 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 582677780}
+  - component: {fileID: 582677781}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -618,6 +591,19 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: -150}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &582677781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582677779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56119b43546f2924f92b97c19d59e1f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreditCanvas: {fileID: 1766281101}
 --- !u!1 &602178271
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +613,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602178272}
-  - component: {fileID: 602178274}
   - component: {fileID: 602178273}
   - component: {fileID: 602178275}
   m_Layer: 0
@@ -702,7 +687,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 602178274}
+      - m_Target: {fileID: 582677781}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: PlayBtn
         m_Mode: 1
@@ -714,19 +699,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &602178274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602178271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56119b43546f2924f92b97c19d59e1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CreditCanvas: {fileID: 1766281101}
 --- !u!95 &602178275
 Animator:
   serializedVersion: 5
@@ -1785,7 +1757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1766281102
 Transform:
   m_ObjectHideFlags: 0
