@@ -13,6 +13,7 @@ public class PlaceableBlock : MonoBehaviour
     public BlockData blockData;
     public GameObject ghost;
     public GameObject selected;
+    public GameObject hover;
 
     void Start()
     {
@@ -26,6 +27,18 @@ public class PlaceableBlock : MonoBehaviour
         {
             placer.SelectBlock(this);
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        if (hover)
+            hover.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        if (hover)
+            hover.SetActive(false);
     }
 
     public void Move(Vector3 move)

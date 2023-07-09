@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int points = 0;
     public int pointsMultiply = 1;
     public ProgressCounter progressCounter;
+    public ProgressCounterNoThreshold ProgressCounterNoThreshold;
     public TargetCamera targetCamera;
     public Winner meta;
 
@@ -36,8 +37,8 @@ public class GameManager : MonoBehaviour
     {
         public int idx;
         public int points;
-
     }
+
     public ScoreInfoManager scoreInfoManager;
     private int scoreInFly = 0;
 
@@ -80,12 +81,14 @@ public class GameManager : MonoBehaviour
     {
         targetGame += value;
         progressCounter.UpdateMaxValue(targetGame);
+        ProgressCounterNoThreshold.UpdateMaxValue(targetGame);
     }
 
     public void DecreaseTarget(int value)
     {
         targetGame -= value;
         progressCounter.UpdateMaxValue(targetGame);
+        ProgressCounterNoThreshold.UpdateMaxValue(targetGame);
     }
 
     public void AddPoints(int points)
@@ -108,6 +111,7 @@ public class GameManager : MonoBehaviour
         scoreInfoManager.UpdateBonusZone((int)mul);
         scoreInfoManager.UpdateBonusFlip(pointsMultiply);
         progressCounter.UpdatePoints(this.points);
+        ProgressCounterNoThreshold.UpdatePoints(this.points);
     }
 
     public void AddMultiply(int increase)
@@ -139,6 +143,7 @@ public class GameManager : MonoBehaviour
         points = 0;
         ResetMultiply();
         progressCounter.UpdatePoints(points);
+        ProgressCounterNoThreshold.UpdatePoints(points);
         FindObjectOfType<ActionsUI>().PopulateList();
         car.Reset();
         targetCamera.MoveTo(Vector3.zero);
@@ -148,17 +153,18 @@ public class GameManager : MonoBehaviour
     {
         points = 0;
         progressCounter.UpdateMaxValue(targetGame);
+        ProgressCounterNoThreshold.UpdateMaxValue(targetGame);
         gameState = GameState.BUILDING;
         ResetMultiply();
         car.Reset();
         progressCounter.UpdatePoints(points);
+        ProgressCounterNoThreshold.UpdatePoints(points);
         targetCamera.MoveTo(Vector3.zero);
         FindObjectOfType<ActionsUI>().PopulateList();
     }
 
     public void Win()
     {
-
         LevelPoints l = new LevelPoints();
         l.points = points;
         l.idx = currentLevel;
@@ -181,6 +187,7 @@ public class GameManager : MonoBehaviour
         {
             sum += levelPoints.points;
         }
+
         return sum;
     }
 
@@ -191,6 +198,16 @@ public class GameManager : MonoBehaviour
         blockPlacer.Clear();
         targetGame = currentLevelData.startTarget;
         meta.SetPos(levelData.levels[currentLevel].metaMaxPos1, levelData.levels[currentLevel].metaMaxPos2);
+        if (currentLevelData.pointsTarget)
+        {
+            progressCounter.gameObject.SetActive(true);
+            ProgressCounterNoThreshold.gameObject.SetActive(false);
+        }
+        else
+        {
+            progressCounter.gameObject.SetActive(false);
+            ProgressCounterNoThreshold.gameObject.SetActive(true);
+        }
     }
 
     public void NextLevel()
