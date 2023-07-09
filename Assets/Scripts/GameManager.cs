@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
     public void ResetMultiply()
     {
         pointsMultiply = 1;
+        scoreInFly = 0;
+        scoreInfoManager.UpdateScore(scoreInFly);
         scoreInfoManager.Reset();
     }
 
