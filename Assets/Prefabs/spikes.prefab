@@ -316,6 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBonus: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
   bonus: 6
 --- !u!1 &6917433143669370570
 GameObject:

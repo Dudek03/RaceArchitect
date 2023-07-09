@@ -6,27 +6,27 @@ using UnityEngine;
 public class BonusZone : MonoBehaviour
 {
     public bool hasBonus = false;
-
+    public LayerMask layerMask;
     public float bonus = 6;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject == GameManager.Instance.car.gameObject)
         {
-            // RaycastHit hit;
-            // if (Physics.Linecast (transform.position, other.gameObject.transform.position, out hit)) {
-            //     if(hit.transform.tag == "player"){
+            RaycastHit hit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(other.gameObject.transform.position, (transform.position - other.transform.position),
+                    out hit, Mathf.Infinity, layerMask))
+            {
+                if (hit.transform == transform.parent)
+                {
                     hasBonus = true;
-            //     }
-            // }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == GameManager.Instance.car.gameObject)
-        {
-            hasBonus = false;
+                }
+                else
+                {
+                    hasBonus = false;
+                }
+            }
         }
     }
 }
