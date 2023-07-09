@@ -16,4 +16,5 @@ MonoBehaviour:
   frontFlipIncrease: 1
   backFlipIncrease: 1
   speedMultiply: 0.4
-  pointOnBooster: 30
+  pointsOnBooster: 30
+  pointsOnGround: 20

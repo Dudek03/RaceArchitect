@@ -23,6 +23,7 @@ namespace blocks
                 GameManager.Instance.car.ApplyForce(GameManager.Instance.car.ldash);
                 Destroy(crumbling_road);
                 GameManager.Instance.progressCounter.UpdatePoints(road_destroy);
+                GameManager.Instance.car.leftArrowActivate = false;
             }
         }
     }
