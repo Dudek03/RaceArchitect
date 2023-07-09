@@ -9,7 +9,6 @@ public class LauncherScript : MonoBehaviour
     public Vector3 force;
     public float superJumpMultiplication = 2;
     private float timer = 0;
-    
     private bool start_launch = false;
 
     // Start is called before the first frame update
