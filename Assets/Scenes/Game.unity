@@ -2125,7 +2125,7 @@ MonoBehaviour:
   targetCamera: {fileID: 25639830}
   meta: {fileID: 1552040893}
   levelData: {fileID: 11400000, guid: 4da5950af0c59eddcbb358e7b3ecc354, type: 2}
-  currentLevel: 0
+  currentLevel: 2
   actionsGenertor: {fileID: 1660737626}
   cardsController: {fileID: 8234773064600867742}
   blockPlacer: {fileID: 1914530305}
