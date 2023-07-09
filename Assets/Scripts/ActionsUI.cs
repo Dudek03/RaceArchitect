@@ -44,7 +44,8 @@ public class ActionsUI : MonoBehaviour
         }
 
         progressAction -= Time.deltaTime;
-        arrowControllers.FirstOrDefault().UpdateProgress((timeAction - progressAction) / timeAction);
+        if (arrowControllers.Count > 0)
+            arrowControllers.FirstOrDefault().UpdateProgress((timeAction - progressAction) / timeAction);
     }
 
     private void MakeAction()

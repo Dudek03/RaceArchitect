@@ -32,6 +32,7 @@ public class LauncherScript : MonoBehaviour
 
     void Launch()
     {
+        if(GameManager.Instance.gameState != GameState.RUN) return;
         if (GameManager.Instance.car.upArrowActivate)
         {
             GameManager.Instance.car.ApplyForce(force * superJumpMultiplication);
