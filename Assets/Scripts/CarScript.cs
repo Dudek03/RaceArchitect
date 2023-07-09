@@ -48,6 +48,7 @@ public class CarScript : MonoBehaviour
 
     private Vector3 startPos;
     private Quaternion startRot;
+    private bool startPosAndRotIsSet = false;
     public ParticleSystem ps;
     public AnimationCurve winTimeSlowdown;
     public AnimationCurve dedTimeSlowdown;
@@ -62,6 +63,7 @@ public class CarScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRot = transform.rotation;
+        startPosAndRotIsSet = true;
     }
 
 
@@ -181,14 +183,14 @@ public class CarScript : MonoBehaviour
         currentSpeed -= deltaSpeed;
         if (currentSpeed <= 0)
         {
-            //TODO: LATER 
             Die();
         }
     }
 
     public void Win()
     {
-        if (GameManager.Instance.gameState == GameState.DEATH || GameManager.Instance.gameState == GameState.WINLOSE) return;
+        if (GameManager.Instance.gameState != GameState.RUN) return;
+        GameManager.Instance.Win();
         currentSpeed = 10;
         rb.velocity = Vector3.zero;
         GameManager.Instance.gameState = GameState.WINLOSE;
@@ -241,15 +243,21 @@ public class CarScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         yield return SlowDownTime(dedTimeSlowdown);
         GameManager.Instance.GameOver();
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     public void Reset()
     {
-        transform.position = startPos;
-        transform.rotation = startRot;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        if (startPosAndRotIsSet)
+        {
+            transform.position = startPos;
+            transform.rotation = startRot;
+        }
+        if (rb)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
+        }
         Time.timeScale = 1;
         currentSpeed = 10f;
     }

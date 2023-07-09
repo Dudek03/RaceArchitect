@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b339760e92cb9a505b7abd1597120300, type: 3}
+  m_Name: Levels
+  m_EditorClassIdentifier: 
+  levels:
+  - metaMaxPos1: {x: 8, y: 0, z: 0}
+    metaMaxPos2: {x: 10, y: 0, z: 0}
+    startTarget: 0
+    pointsTarget: 0
+    blocks:
+    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
+    actions: 000000000100000003000000
+    minNumberOfAction: 4
+    maxNumberOfAction: 6
+  - metaMaxPos1: {x: 13, y: 2, z: 0}
+    metaMaxPos2: {x: 15, y: -2, z: 0}
+    startTarget: -1000
+    pointsTarget: 1
+    blocks:
+    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
+    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
+    actions: 000000000100000003000000
+    minNumberOfAction: 8
+    maxNumberOfAction: 12
+  - metaMaxPos1: {x: 15, y: 5, z: 0}
+    metaMaxPos2: {x: 20, y: -3, z: 0}
+    startTarget: 1000
+    pointsTarget: 1
+    blocks:
+    - {fileID: 11400000, guid: 2c7db8aed8d6bf3ffb0f7eb3d8b5f38b, type: 2}
+    - {fileID: 11400000, guid: b67402b8cf613082abcaa8a3f5073a61, type: 2}
+    - {fileID: 11400000, guid: 4fe568ce7d02bc24792fd9326b0cdaed, type: 2}
+    - {fileID: 11400000, guid: f9eda2894fa9127418ba655a7d929129, type: 2}
+    - {fileID: 11400000, guid: e8531f2d4f6b85c4ea47f14c89a16b37, type: 2}
+    actions: 00000000010000000300000002000000
+    minNumberOfAction: 8
+    maxNumberOfAction: 12

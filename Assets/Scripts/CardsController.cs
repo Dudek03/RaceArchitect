@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class CardsController : MonoBehaviour
 {
-    public List<BlockCard> cards;
+    List<BlockCard> cards = new List<BlockCard>();
     BlockPlacer placer;
+    public GameObject cardPrefab;
 
     void Start()
     {
         placer = GameObject.Find("Placer").GetComponent<BlockPlacer>();
+    }
+
+    public void GenerateCards()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        cards.Clear();
+
+        var blocks = GameManager.Instance.currentLevelData.blocks;
+        foreach (var block in blocks)
+        {
+            GameObject obj = Instantiate(cardPrefab, transform);
+            BlockCard c = obj.GetComponent<BlockCard>();
+            c.SetData(block);
+            cards.Add(c);
+        }
     }
 
     void Update()
