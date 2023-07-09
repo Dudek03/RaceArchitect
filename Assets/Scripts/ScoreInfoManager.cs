@@ -23,7 +23,7 @@ public class ScoreInfoManager : MonoBehaviour
         lastScore = score;
         if (score <= 0)
         {
-            if(gameObject.activeInHierarchy)
+            if (gameObject.activeInHierarchy)
                 StartCoroutine(HideScore());
         }
         else
@@ -35,7 +35,7 @@ public class ScoreInfoManager : MonoBehaviour
 
     IEnumerator HideScore()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3);
         if (lastScore <= 0)
         {
             scoreObject.SetActive(false);
@@ -44,18 +44,18 @@ public class ScoreInfoManager : MonoBehaviour
 
     public void UpdateBonus(int bonus)
     {
-        bonusMasterText.text = bonus.ToString();
+        bonusMasterText.text = "x " + bonus.ToString();
     }
 
     public void UpdateBonusZone(int bonus)
     {
-        bonusZoneText.text = bonus.ToString();
+        bonusZoneText.text = "+ " + bonus.ToString();
         bonusZoneObject.SetActive(bonus > 0);
     }
 
     public void UpdateBonusFlip(int bonus)
     {
-        bonusFlipText.text = bonus.ToString();
+        bonusFlipText.text = "+ " + bonus.ToString();
         bonusFlipBonus.SetActive(bonus > 0);
     }
 

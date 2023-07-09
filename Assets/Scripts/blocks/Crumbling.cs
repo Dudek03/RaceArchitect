@@ -15,6 +15,7 @@ namespace blocks
             {
                 Destroy(crumbling_road);
                 GameManager.Instance.progressCounter.UpdatePoints(road_destroy);
+                GameManager.Instance.ProgressCounterNoThreshold.UpdatePoints(road_destroy);
                 GameManager.Instance.car.slam = false;
                 GameManager.Instance.car.Rot_reset();
             }
@@ -23,6 +24,7 @@ namespace blocks
                 GameManager.Instance.car.ApplyForce(GameManager.Instance.car.ldash);
                 Destroy(crumbling_road);
                 GameManager.Instance.progressCounter.UpdatePoints(road_destroy);
+                GameManager.Instance.ProgressCounterNoThreshold.UpdatePoints(road_destroy);
             }
         }
     }

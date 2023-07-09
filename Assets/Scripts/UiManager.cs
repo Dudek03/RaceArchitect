@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
     public GameObject runUI;
     public GameObject buildUI;
     public GameObject winScreen;
+    public GameObject endScreen;
 
     private void Awake()
     {
@@ -49,11 +50,24 @@ public class UiManager : MonoBehaviour
 
     public void ShowWin()
     {
-        winScreen.SetActive(true);
+        if (GameManager.Instance.currentLevel >= GameManager.Instance.levelData.levels.Count - 1)
+        {
+            int pt = GameManager.Instance.GetTotalPoints();
+            if (PlayerPrefs.GetInt("highscore", 0) < pt)
+            {
+                PlayerPrefs.SetInt("highscore", pt);
+            }
+            endScreen.SetActive(true);
+        }
+        else
+        {
+            winScreen.SetActive(true);
+        }
     }
 
     public void HideWin()
     {
+        endScreen.SetActive(false);
         winScreen.SetActive(false);
     }
 
